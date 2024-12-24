@@ -910,19 +910,17 @@ au BufRead,BufNewFile *.agda call AgdaFiletype()
 au QuitPre *.agda :CornelisCloseInfoWindows
 
 function! AgdaFiletype()
-    nnoremap <buffer> <leader>l :CornelisLoad<CR> :CornelisQuestionToMeta<CR>
-    nnoremap <buffer> <leader>r :CornelisRefine<CR>
-    nnoremap <buffer> <leader>d :CornelisMakeCase<CR>
-    nnoremap <buffer> <leader>, :CornelisTypeContextInfer<CR>
-    "nnoremap <buffer> <leader>. :CornelisTypeContextInfer<CR>
-    nnoremap <buffer> <leader>s :CornelisSolve<CR>
-    nnoremap <buffer> <leader>a :CornelisAuto<CR>
-    nnoremap <buffer> gd        :CornelisGoToDefinition<CR>
-    nnoremap <buffer> <leader>p :CornelisPrevGoal<CR>
-    nnoremap <buffer> <leader>n :CornelisNextGoal<CR>
-    nnoremap <buffer> <C-A>     :CornelisInc<CR>
-    nnoremap <buffer> <C-X>     :CornelisDec<CR>
-    nnoremap <buffer> <C-space> :CornelisGive<CR>
+    nnoremap <buffer> <leader>l    :CornelisLoad<CR> :CornelisQuestionToMeta<CR>
+    nnoremap <buffer> <leader>q    :CornelisQuestionToMeta<CR>
+    nnoremap <buffer> <leader>r    :CornelisRefine<CR>
+    nnoremap <buffer> <leader>d    :CornelisMakeCase<CR>
+    nnoremap <buffer> <leader>p    :CornelisPrevGoal<CR>
+    nnoremap <buffer> <leader>n    :CornelisNextGoal<CR>
+    nnoremap <buffer> <leader>,    :CornelisTypeContextInfer<CR>
+    nnoremap <buffer> gd           :CornelisGoToDefinition<CR>
+    nnoremap <buffer> <leader><CR> :CornelisNormalize<CR>
+    nnoremap <buffer> <leader>a    :CornelisAuto<CR>
+    nnoremap <buffer> <C-C>        :CornelisAbort<CR> :CornelisRestart<CR>
 endfunction
 
 au BufWritePost *.agda execute "normal! :CornelisLoad\<CR>"
@@ -999,7 +997,26 @@ au BufReadPre *.lagda* call CornelisLoadWrapper()
       lazy = '💤 ',
     },
   },
+  {
+    'christoomey/vim-tmux-navigator',
+    cmd = {
+      'TmuxNavigateLeft',
+      'TmuxNavigateDown',
+      'TmuxNavigateUp',
+      'TmuxNavigateRight',
+      'TmuxNavigatePrevious',
+    },
+    keys = {
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+    },
+  },
 })
+
+vim.opt.rtp:prepend '/Users/leo/.opam/default/share/ocp-indent/vim'
 
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
