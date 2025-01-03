@@ -1016,7 +1016,7 @@ au BufReadPre *.lagda* call CornelisLoadWrapper()
   },
 })
 
-vim.opt.rtp:prepend '/Users/leo/.opam/default/share/ocp-indent/vim'
+vim.opt.rtp:prepend '~/.opam/default/share/ocp-indent/vim'
 
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
