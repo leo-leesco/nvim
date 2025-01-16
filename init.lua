@@ -611,12 +611,6 @@ require('lazy').setup({
             },
           },
         },
-
-        -- ocamllsp = {
-        --   capabilities = vim.tbl_deep_extend('force', capabilities, {
-        --     textDocument = { semanticTokens = nil },
-        --   }),
-        -- },
       }
 
       -- Ensure the servers and tools above are installed
@@ -632,7 +626,6 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'ocamlformat', -- formats OCaml
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -685,7 +678,6 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        ocaml = { 'ocamlformat' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
