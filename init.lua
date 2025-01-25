@@ -996,7 +996,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   group = latex_group,
   pattern = "*.tex",
   callback = function()
-    vim.cmd("silent !pdflatex %")
+    vim.cmd("silent !pdflatex -shell-escape %")
     vim.cmd("silent! !open %:r.pdf")
     vim.cmd("silent! !open -a wezterm.app")
   end,
