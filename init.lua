@@ -584,6 +584,16 @@ require('lazy').setup({
         --  - settings (table): Override the default settings passed when initializing the server.
         --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
         local servers = {
+          ltex = {
+            settings = {
+              ltex = {
+                dictionary = {
+                  ["en"] = { "~/.config/ltex/universal_dictionary.txt" },
+                  ["fr"] = { "~/.config/ltex/universal_dictionary.txt" }
+                }
+              }
+            }
+          }
           -- clangd = {},
           -- gopls = {},
           -- pyright = {},
@@ -726,30 +736,22 @@ require('lazy').setup({
           --
           -- No, but seriously. Please read `:help ins-completion`, it is really good!
           mapping = cmp.mapping.preset.insert {
-            -- Select the [n]ext item
-            -- ['<C-n>'] = cmp.mapping.select_next_item(),
-            -- Select the [p]revious item
-            -- ['<C-p>'] = cmp.mapping.select_prev_item(),
-
             -- Scroll the documentation window [b]ack / [f]orward
             ['<C-b>'] = cmp.mapping.scroll_docs(-4),
             ['<C-f>'] = cmp.mapping.scroll_docs(4),
 
-            -- Accept ([y]es) the completion.
-            --  This will auto-import if your LSP supports it.
-            --  This will expand snippets if the LSP sent a snippet.
-            -- ['<C-y>'] = cmp.mapping.confirm { select = true },
+            --  By default, accept completion on <CR>
+            --  When with (La)TeX files, completion is not accepted on <C-CR>
+            ['<CR>'] = (vim.bo.filetype ~= 'tex') and cmp.mapping.confirm({ select = true }) or nil,
+            ['<C-CR>'] = (vim.bo.filetype == 'tex') and cmp.mapping.confirm({ select = true }) or nil,
 
-            -- If you prefer more traditional completion keymaps,
-            -- you can uncomment the following lines
-            ['<CR>'] = cmp.mapping.confirm { select = true },
             ['<Tab>'] = cmp.mapping.select_next_item(),
             ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
             -- Manually trigger a completion from nvim-cmp.
             --  Generally you don't need this, because nvim-cmp will display
             --  completions whenever it has completion options available.
-            ['<C-Space>'] = cmp.mapping.complete {},
+            ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
 
             -- Think of <c-l> as moving to the right of your snippet expansion.
             --  So if you have a snippet that's like:
@@ -984,6 +986,21 @@ au BufReadPre *.lagda* call CornelisLoadWrapper()
     },
 
   })
+
+-- Define an autocommand group for LaTeX
+local latex_group = vim.api.nvim_create_augroup("LatexAutoCompile", { clear = true })
+
+-- Execute pdflatex on save for .tex files
+-- Opens a PDF viewer that refreshes on modification
+vim.api.nvim_create_autocmd("BufWritePost", {
+  group = latex_group,
+  pattern = "*.tex",
+  callback = function()
+    vim.cmd("silent !pdflatex %")
+    vim.cmd("silent! !open %:r.pdf")
+    vim.cmd("silent! !open -a wezterm.app")
+  end,
+})
 
 vim.opt.rtp:prepend '~/.opam/default/share/ocp-indent/vim'
 
