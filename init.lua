@@ -672,6 +672,7 @@ require('lazy').setup({
           }
         end,
         formatters_by_ft = {
+          sql = { "pg_format" },
           -- Conform can also run multiple formatters sequentially
           -- python = { "isort", "black" },
           --
