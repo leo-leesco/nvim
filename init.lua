@@ -756,15 +756,14 @@ require('lazy').setup({
             --  By default, accept completion on <CR>
             --  When with (La)TeX files, completion is not accepted on <C-CR>
             ['<CR>'] = (vim.bo.filetype ~= 'tex') and cmp.mapping.confirm({ select = true }) or nil,
-            ['<C-CR>'] = (vim.bo.filetype == 'tex') and cmp.mapping.confirm({ select = true }) or nil,
+            -- Manually trigger a completion from nvim-cmp.
+            --  Generally you don't need this, because nvim-cmp will display
+            --  completions whenever it has completion options available.
+            ['<C-Space>'] = (vim.bo.filetype == 'tex') and cmp.mapping.confirm({ select = true }) or nil,
 
             ['<Tab>'] = cmp.mapping.select_next_item(),
             ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
-            -- Manually trigger a completion from nvim-cmp.
-            --  Generally you don't need this, because nvim-cmp will display
-            --  completions whenever it has completion options available.
-            ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
 
             -- Think of <c-l> as moving to the right of your snippet expansion.
             --  So if you have a snippet that's like:
