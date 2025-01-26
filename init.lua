@@ -1005,6 +1005,7 @@ local latex_group = vim.api.nvim_create_augroup("LatexAutoCompile", { clear = tr
 
 -- Execute pdflatex on save for .tex files
 -- Opens a PDF viewer that refreshes on modification
+-- TODO : use the bibtex compilation chain only when .bib is detected
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = latex_group,
   pattern = "*.tex",
