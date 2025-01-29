@@ -1,0 +1,3 @@
+[submodule "plugins/mpi.vim"]
+	path = plugins/mpi.vim
+	url = https://github.com/jiangxincode/mpi.vim.git
