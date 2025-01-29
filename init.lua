@@ -200,6 +200,6 @@ require('lazy').setup({
 
   })
 
-require('custom.plugins.latex')
+require('custom.latex')
 
 require('custom.options')
