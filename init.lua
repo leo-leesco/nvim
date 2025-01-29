@@ -887,49 +887,6 @@ require('lazy').setup({
     -- provides the comment commands family (`gcc`, `gc{`, `gc}`, etc.)
     'numToStr/Comment.nvim',
 
-    {
-      'isovector/cornelis',
-      ft = { 'agda' },
-      build = 'stack build',
-      dependencies = {
-        'kana/vim-textobj-user',
-        'neovimhaskell/nvim-hs.vim',
-      },
-      init = function()
-        vim.g.cornelis_agda_prefix = '\\'
-        vim.cmd [[
-au BufRead,BufNewFile *.agda call AgdaFiletype()
-au QuitPre *.agda :CornelisCloseInfoWindows
-
-function! AgdaFiletype()
-    nnoremap <buffer> <leader>l    :CornelisLoad<CR> :CornelisQuestionToMeta<CR>
-    nnoremap <buffer> <leader>q    :CornelisQuestionToMeta<CR>
-    nnoremap <buffer> <leader>r    :CornelisRefine<CR>
-    nnoremap <buffer> <leader>d    :CornelisMakeCase<CR>
-    nnoremap <buffer> <leader>p    :CornelisPrevGoal<CR>
-    nnoremap <buffer> <leader>n    :CornelisNextGoal<CR>
-    nnoremap <buffer> <leader>,    :CornelisTypeContextInfer<CR>
-    nnoremap <buffer> gd           :CornelisGoToDefinition<CR>
-    nnoremap <buffer> <leader><CR> :CornelisNormalize<CR>
-    nnoremap <buffer> <leader>a    :CornelisAuto<CR>
-    nnoremap <buffer> <C-C>        :CornelisAbort<CR> :CornelisRestart<CR>
-endfunction
-
-au BufWritePost *.agda execute "normal! :CornelisLoad\<CR>"
-      function! CornelisLoadWrapper()
-  if exists(":CornelisLoad") ==# 2
-    CornelisLoad
-  endif
-endfunction
-
-au BufReadPre *.agda call CornelisLoadWrapper()
-au BufReadPre *.lagda* call CornelisLoadWrapper()
-]]
-
-        vim.g.cornelis_split_location = 'bottom'
-        -- require 'config.cornelis' -- this could be re-enabled when I'll have understood how relative imports work
-      end,
-    },
 
     -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
     -- init.lua. If you want these files, they are in the repository, so you can just download them and
@@ -939,7 +896,7 @@ au BufReadPre *.lagda* call CornelisLoadWrapper()
     --
     --  Here are some example plugins that I've included in the Kickstart repository.
     --  Uncomment any of the lines below to enable them (you will need to restart nvim).
-    --
+
     require 'kickstart.plugins.debug',
     require 'kickstart.plugins.indent_line',
     require 'kickstart.plugins.lint',
@@ -949,31 +906,14 @@ au BufReadPre *.lagda* call CornelisLoadWrapper()
 
     -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
     --    This is the easiest way to modularize your config.
-    --
+
     --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-    -- { import = 'custom.plugins' },
-    --
+    { import = 'custom.plugins' },
+
     -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
     -- Or use telescope!
     -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
     -- you can continue same window with `<space>sr` which resumes last telescope search
-    {
-      'christoomey/vim-tmux-navigator',
-      cmd = {
-        'TmuxNavigateLeft',
-        'TmuxNavigateDown',
-        'TmuxNavigateUp',
-        'TmuxNavigateRight',
-        'TmuxNavigatePrevious',
-      },
-      keys = {
-        { '<c-h>',  '<cmd><C-U>TmuxNavigateLeft<cr>' },
-        { '<c-j>',  '<cmd><C-U>TmuxNavigateDown<cr>' },
-        { '<c-k>',  '<cmd><C-U>TmuxNavigateUp<cr>' },
-        { '<c-l>',  '<cmd><C-U>TmuxNavigateRight<cr>' },
-        { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
-      },
-    }
   },
 
   {
