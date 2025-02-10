@@ -1,5 +1,5 @@
 -- Define an autocommand group for LaTeX
-latex_group = vim.api.nvim_create_augroup("LatexAutoCompile", { clear = true })
+local latex_group = vim.api.nvim_create_augroup("LatexAutoCompile", { clear = true })
 
 -- Execute pdflatex on save for .tex files
 -- Opens a PDF viewer that refreshes on modification
