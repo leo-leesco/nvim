@@ -1,44 +1,34 @@
 return {
 	'ndonfris/fish-lsp',
 	config = function()
+		-- Start FishLSP on FileType event for fish files
 		vim.api.nvim_create_autocmd('FileType', {
 			pattern = 'fish',
 			callback = function()
-				vim.lsp.start({
-					name = 'fish-lsp',
+				require('lspconfig').fish_lsp.setup({
 					cmd = { 'fish-lsp', 'start' },
+					filetypes = { 'fish' },
 					cmd_env = { fish_lsp_show_client_popups = false },
 				})
 			end,
 		})
 
-		local lspconfig = require('lspconfig')
+		-- Create a group for FishLSP autocommands
+		local fish_group = vim.api.nvim_create_augroup('FishLSP', { clear = true })
 
-		-- Define the autocommands using the nvim API
-		local group = vim.api.nvim_create_augroup('FishLSP', { clear = true })
-
-		vim.api.nvim_create_autocmd({ 'BufWritePre', 'BufEnter' }, {
-			group = group,
-			pattern = '*.fish',
-			callback = function()
-				lspconfig.fish_lsp.setup({
-					cmd = { 'fish-lsp', 'start' },
-					filetypes = { 'fish' },
-				})
-			end,
-		})
-
+		-- Document highlighting on CursorHold events
 		vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-			group = group,
-			buffer = vim.api.nvim_get_current_buf(),
+			group = fish_group,
+			pattern = '*.fish',
 			callback = function()
 				vim.lsp.buf.document_highlight()
 			end,
 		})
 
+		-- Clear references on CursorMoved for fish files
 		vim.api.nvim_create_autocmd('CursorMoved', {
-			group = group,
-			buffer = vim.api.nvim_get_current_buf(),
+			group = fish_group,
+			pattern = '*.fish',
 			callback = function()
 				vim.lsp.buf.clear_references()
 			end,
