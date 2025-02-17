@@ -15,12 +15,12 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   callback = function()
     vim.cmd("silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%'")
 
-    -- check for bibtex
+    -- check for bibtex files
     if vim.fn.glob(vim.fn.getcwd() .. "/*.bib") then
       vim.print(".bib found")
-      vim.cmd("silent !bibtex '%:r'")
-      vim.cmd("silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%'")
-      vim.cmd("silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%'")
+      vim.cmd("silent !bibtex '%:r' &")
+      vim.cmd("silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%' &")
+      vim.cmd("silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%' &")
     end
 
     -- toggle Preview to make sure the PDF is re-rendered
