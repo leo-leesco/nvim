@@ -30,3 +30,10 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     vim.cmd("silent! !open -a wezterm.app")
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "txt" },
+  callback = function()
+    vim.opt_local.spell = false
+  end,
+})
