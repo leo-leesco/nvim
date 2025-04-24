@@ -1,0 +1,6 @@
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('marksman')
+vim.lsp.enable('agda_ls')
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('ocamllsp')
+vim.lsp.enable('coq_lsp')
