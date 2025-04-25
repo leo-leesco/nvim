@@ -12,6 +12,6 @@ function mini_plugins_from_list(tbl)
 	return result
 end
 
-local plugins = { "pairs", "align", 'ai', "completion", "comment", "snippets", "operators" }
+local plugins = { "pairs", "align", "completion", "comment", "snippets", }
 
 return mini_plugins_from_list(plugins)
