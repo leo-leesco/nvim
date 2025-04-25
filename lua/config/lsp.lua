@@ -1,15 +1,17 @@
 function install(package_manager, package, flags)
-	local sh_cmd = "silent !" .. package_manager .. " install " .. " " .. (flags or "") .. " " .. package
-	print(sh_cmd .. " > /dev/null &")
-	vim.cmd(sh_cmd .. " > /dev/null &")
+	local sh_cmd = "!" .. package_manager .. " install " .. " " .. (flags or "") .. " " .. package
+	vim.cmd(sh_cmd)
+	-- local sh_cmd = "silent !" .. package_manager .. " install " .. " " .. (flags or "") .. " " .. package
+	-- print(sh_cmd .. " > /dev/null &")
+	-- vim.cmd(sh_cmd .. " > /dev/null &")
 end
 
 lsp_clients = {
 	lua_ls = { deps = { "lua-language-server" }, package_manager = "brew" },
 	marksman = { deps = { "marksman" }, package_manager = "brew" },
 	rust_analyzer = { deps = { "rust-analyzer" }, package_manager = "brew" },
-	ocamllsp = { deps = { "ocaml-lsp-server" }, package_manager = "opam" },
-	coq_lsp = { deps = { "coq-lsp" }, package_manager = "opam" },
+	ocamllsp = { deps = { "ocaml-lsp-server" }, package_manager = "opam", flags = "--yes" },
+	coq_lsp = { deps = { "coq-lsp" }, package_manager = "opam", flags = "--yes" },
 	astro =
 	{
 		deps = { "typescript-language-server", "typescript", "prettier", "prettier-plugin-astro", "@astrojs/language-server", "@astrojs/ts-plugin", },
@@ -46,3 +48,7 @@ end, { nargs = 1 })
 for k in pairs(lsp_clients) do
 	vim.lsp.enable(k)
 end
+
+-- LANGUAGE SPECIFIC
+-- OCaml
+vim.opt.rtp:prepend("~/.opam/default/share/ocp-indent/vim")
