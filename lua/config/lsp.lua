@@ -1,9 +1,6 @@
 function install(package_manager, package, flags)
 	local sh_cmd = "!" .. package_manager .. " install " .. " " .. (flags or "") .. " " .. package
 	vim.cmd(sh_cmd)
-	-- local sh_cmd = "silent !" .. package_manager .. " install " .. " " .. (flags or "") .. " " .. package
-	-- print(sh_cmd .. " > /dev/null &")
-	-- vim.cmd(sh_cmd .. " > /dev/null &")
 end
 
 lsp_clients = {
@@ -23,6 +20,15 @@ lsp_clients = {
 	clangd = { deps = { "llvm" }, package_manager = "brew" },
 }
 
+for k in pairs(lsp_clients) do
+	vim.lsp.enable(k)
+end
+
+-- LANGUAGE SPECIFIC
+-- OCaml
+vim.opt.rtp:prepend("~/.opam/default/share/ocp-indent/vim")
+
+-- CUSTOM COMMANDS
 vim.api.nvim_create_user_command('LspInstallAll', function()
 	for _, lsp in pairs(lsp_clients) do
 		for _, package in ipairs(lsp.deps) do
@@ -45,10 +51,9 @@ vim.api.nvim_create_user_command('LspInstall', function(args)
 	end
 end, { nargs = 1 })
 
-for k in pairs(lsp_clients) do
-	vim.lsp.enable(k)
-end
-
--- LANGUAGE SPECIFIC
--- OCaml
-vim.opt.rtp:prepend("~/.opam/default/share/ocp-indent/vim")
+-- CUSTOM KEYBINDINGS
+vim.keymap.set("n", "gk", function() vim.diagnostic.open_float() end, { noremap = true })
+-- toggle phantom diagnostics
+vim.keymap.set("n", "<leader>k", function()
+	if vim.diagnostic.is_enabled() then vim.diagnostic.hide() else vim.diagnostic.show() end
+end)
