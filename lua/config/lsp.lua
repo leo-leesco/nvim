@@ -1,4 +1,3 @@
-print("conf")
 function install(package_manager, package, flags)
 	local sh_cmd = "!" .. package_manager .. " install " .. " " .. (flags or "") .. " " .. package
 	vim.cmd(sh_cmd)

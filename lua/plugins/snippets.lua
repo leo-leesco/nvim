@@ -1,4 +1,3 @@
-print("snip plug")
 return {
 	{
 		"garymjr/nvim-snippets",
