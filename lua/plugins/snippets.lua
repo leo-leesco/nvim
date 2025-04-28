@@ -1,3 +1,4 @@
+print("snip plug")
 return {
 	{
 		"garymjr/nvim-snippets",
@@ -101,6 +102,7 @@ return {
 	-- blink.cmp integration
 	{
 		"saghen/blink.cmp",
+		build = "cargo +nightly build --release",
 		optional = true,
 		opts = {
 			snippets = {

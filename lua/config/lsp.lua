@@ -1,3 +1,4 @@
+print("conf")
 function install(package_manager, package, flags)
 	local sh_cmd = "!" .. package_manager .. " install " .. " " .. (flags or "") .. " " .. package
 	vim.cmd(sh_cmd)
@@ -26,8 +27,9 @@ lsp_clients = {
 	clangd = { deps = { "llvm" }, package_manager = "brew" },
 }
 
-for k in pairs(lsp_clients) do
-	vim.lsp.enable(k)
+for server in pairs(lsp_clients) do
+	vim.lsp.enable(server)
+	require("lspconfig")[server].setup({ capabilities = require("blink.cmp").get_lsp_capabilities() })
 end
 
 -- LANGUAGE SPECIFIC
