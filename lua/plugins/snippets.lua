@@ -86,6 +86,8 @@ return {
 					require("cmp.config").set_onetime({ sources = {} })
 				end,
 			}
+
+			-- sources for snippets
 			table.insert(opts.sources, { name = "luasnip" })
 			table.insert(opts.sources, { name = "nvim_lsp" })
 			table.insert(opts.sources, { name = "nvim_lua" })
