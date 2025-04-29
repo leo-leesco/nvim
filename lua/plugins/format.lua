@@ -11,6 +11,11 @@ formatters = {
 		package_manager = "bun",
 		flags = "-g",
 	},
+	markdown = {
+		deps = { "prettier" },
+		package_manager = "bun",
+		flags = "-g",
+	},
 }
 
 formatters_by_ft = {}
