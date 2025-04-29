@@ -10,42 +10,47 @@
 local latex = vim.api.nvim_create_augroup("Latex", { clear = true })
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-  group = latex,
-  pattern = "*.tex",
-  callback = function()
-    vim.cmd("silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%'")
+	group = latex,
+	pattern = "*.tex",
+	callback = function()
+		vim.cmd("silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%'")
 
-    -- check for bibtex files
-    if vim.fn.glob(vim.fn.getcwd() .. "/*.bib") then
-      vim.print(".bib found")
-      vim.cmd("silent !bibtex '%:r' &")
-      vim.cmd("silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%' &")
-      vim.cmd("silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%' &")
-    end
+		-- check for bibtex files
+		if vim.fn.glob(vim.fn.getcwd() .. "/*.bib") then
+			vim.print(".bib found")
+			vim.cmd("silent !bibtex '%:r' &")
+			vim.cmd("silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%' &")
+			vim.cmd("silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%' &")
+		end
 
-    -- toggle Preview to make sure the PDF is re-rendered
-    vim.cmd("silent! !open '%:r.pdf'")
-    -- vim.cmd("silent! !open -g '%:r.pdf'")
-    -- vim.cmd [[ !osascript -e 'tell application "Preview" to open POSIX file "%:p:r.pdf"' -e 'tell application "Preview" to activate' -e 'tell application "System Events" to tell process "Preview" to keystroke "1" using {command down}' -e 'tell application "System Events" to tell process "Preview" to keystroke "9" using {command down}' -e 'tell application "System Events" to tell process "Preview" to key code 31 using {command down}' -e 'tell application "System Events" to tell process "Preview" to key code 124 using {command down}' ]]
-    vim.cmd("silent! !open -a wezterm.app")
-  end,
+		-- toggle Preview to make sure the PDF is re-rendered
+		vim.cmd("silent! !open '%:r.pdf'")
+		-- vim.cmd("silent! !open -g '%:r.pdf'")
+		-- vim.cmd [[ !osascript -e 'tell application "Preview" to open POSIX file "%:p:r.pdf"' -e 'tell application "Preview" to activate' -e 'tell application "System Events" to tell process "Preview" to keystroke "1" using {command down}' -e 'tell application "System Events" to tell process "Preview" to keystroke "9" using {command down}' -e 'tell application "System Events" to tell process "Preview" to key code 31 using {command down}' -e 'tell application "System Events" to tell process "Preview" to key code 124 using {command down}' ]]
+		vim.cmd("silent! !open -a wezterm.app")
+	end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "markdown", "txt" },
-  callback = function()
-    vim.opt_local.spell = false
-  end,
+	pattern = { "markdown", "txt" },
+	callback = function()
+		vim.opt_local.spell = false
+	end,
 })
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("lsp", { clear = true }),
-  callback = function(args)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = args.buf,
-      callback = function()
-        vim.lsp.buf.format {async = false, id = args.data.client_id }
-      end,
-    })
-  end
-})
+-- vim.api.nvim_create_autocmd("LspAttach", {
+-- 	group = vim.api.nvim_create_augroup("lsp", { clear = true }),
+-- 	callback = function(args)
+-- 		vim.api.nvim_create_autocmd("BufWritePre", {
+-- 			buffer = args.buf,
+-- 			callback = function(args)
+-- 				local conform = require("conform")
+-- 				if #conform.list_formatters(args.buf) > 0 then
+-- 					conform.format({ bufnr = args.buf })
+-- 				else
+-- 					vim.lsp.buf.format({ async = false, id = args.data.client_id })
+-- 				end
+-- 			end,
+-- 		})
+-- 	end,
+-- })
