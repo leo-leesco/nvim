@@ -8,7 +8,7 @@ lsp_clients = {
 	marksman = { deps = { "marksman" }, package_manager = "brew" },
 	rust_analyzer = { deps = { "rust-analyzer" }, package_manager = "brew" },
 	ocamllsp = { deps = { "ocaml-lsp-server" }, package_manager = "opam", flags = "--yes" },
-	coq_lsp = { deps = { "coq-lsp" }, package_manager = "opam", flags = "--yes" },
+	-- coq_lsp = { deps = { "coq-lsp" }, package_manager = "opam", flags = "--yes" },
 	astro = {
 		deps = {
 			"typescript-language-server",
@@ -34,6 +34,32 @@ end
 -- LANGUAGE SPECIFIC
 -- OCaml
 vim.opt.rtp:prepend("~/.opam/default/share/ocp-indent/vim")
+
+local dune_job_id = nil
+vim.api.nvim_create_autocmd("BufReadPost", {
+	pattern = "*.ml",
+	callback = function()
+		if dune_job_id == nil then
+			dune_job_id = vim.fn.jobstart({ "dune", "build", "-w" }, {
+				detach = true, -- let it run independently
+			})
+			if dune_job_id > 0 then
+				vim.notify("Started dune build -w (job ID " .. dune_job_id .. ")", vim.log.levels.INFO)
+			else
+				vim.notify("Failed to start dune build -w", vim.log.levels.ERROR)
+			end
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("VimLeavePre", {
+	callback = function()
+		if dune_job_id and dune_job_id > 0 then
+			vim.fn.jobstop(dune_job_id)
+			vim.notify("Stopped dune build -w", vim.log.levels.INFO)
+		end
+	end,
+})
 
 -- CUSTOM COMMANDS
 vim.api.nvim_create_user_command("LspInstallAll", function()
