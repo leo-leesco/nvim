@@ -1,4 +1,4 @@
-vim.cmd [[
+vim.cmd([[
 "" easier navigation between vim panes
 nnoremap <C-H> <C-W>h
 nnoremap <C-J> <C-W>j
@@ -13,4 +13,7 @@ nmap <C-W>l <C-W>L
 
 "" disable highlight when pressing <Esc>
 nnoremap <silent> <Esc> :noh<CR><Esc>
-]]
+
+"" terminal mode commands
+tnoremap <Esc><Esc> <C-\><C-n>
+]])
