@@ -16,4 +16,12 @@ nnoremap <silent> <Esc> :noh<CR><Esc>
 
 "" terminal mode commands
 tnoremap <Esc><Esc> <C-\><C-n>
+
+"" guardrails again CAPSLOCK
+nnoremap U :echo " < < ===== C H E C K   C A P S   L O C K ===== > > "<CR>
 ]])
+
+vim.api.nvim_create_user_command("W", function()
+	vim.cmd("write")
+	vim.notify("<< ===== C H E C K   C A P S   L O C K ===== >>", vim.log.levels.WARN)
+end, {})
