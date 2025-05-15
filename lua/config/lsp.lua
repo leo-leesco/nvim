@@ -37,7 +37,7 @@ vim.opt.rtp:prepend("~/.opam/default/share/ocp-indent/vim")
 
 local dune_job_id = nil
 vim.api.nvim_create_autocmd("BufReadPost", {
-	pattern = "*.ml",
+	pattern = { "*.ml", "*.mli" },
 	callback = function()
 		if dune_job_id == nil then
 			dune_job_id = vim.fn.jobstart({ "dune", "build", "-w" }, {
