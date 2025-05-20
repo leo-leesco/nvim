@@ -13,8 +13,10 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 		if vim.fn.glob(vim.fn.getcwd() .. "/*.bib") then
 			vim.print(".bib found")
 			vim.cmd("silent !bibtex '%:r' &")
-			vim.cmd("silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%' &")
-			vim.cmd("silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%' &")
+			vim.cmd(
+				"silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%' &")
+			vim.cmd(
+				"silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%' &")
 		end
 
 		-- toggle Preview to make sure the PDF is re-rendered
@@ -29,6 +31,43 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "markdown", "txt" },
 	callback = function()
 		vim.opt_local.spell = false
+	end,
+})
+
+-- Automatically commit lockfile after running Lazy Update (or Sync)
+vim.api.nvim_create_autocmd("User", {
+	pattern = "LazyUpdate",
+	callback = function()
+		local repo_dir = "~/.config/nvim/"
+		local lockfile = repo_dir .. "lazy-lock.json"
+
+		local cmd = {
+			"git",
+			"-C",
+			repo_dir,
+			"commit",
+			lockfile,
+			"-m",
+			"Update lazy-lock.json",
+		}
+
+		local success, process = pcall(function()
+			return vim.system(cmd):wait()
+		end)
+
+		if process and process.code == 0 then
+			vim.notify("Committed lazy-lock.json")
+			vim.notify(process.stdout)
+		else
+			if not success then
+				vim.notify("Failed to run command '" .. table.concat(cmd, " ") .. "':",
+					vim.log.levels.WARN, {})
+				vim.notify(tostring(process), vim.log.levels.WARN, {})
+			else
+				vim.notify("git ran but failed to commit:")
+				vim.notify(process.stdout, vim.log.levels.WARN, {})
+			end
+		end
 	end,
 })
 
