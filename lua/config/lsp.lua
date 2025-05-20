@@ -1,5 +1,5 @@
 function install(package_manager, package, flags)
-	local sh_cmd = "!" .. package_manager .. " install " .. " " .. (flags or "") .. " " .. package
+	local sh_cmd = "!" .. package_manager .. " install " .. (flags or "") .. " " .. package
 	vim.cmd(sh_cmd)
 end
 
@@ -26,6 +26,31 @@ lsp_clients = {
 	clangd = { deps = { "llvm" }, package_manager = "brew" },
 }
 
+
+-- CUSTOM COMMANDS
+vim.api.nvim_create_user_command("LspInstallAll", function()
+	for _, lsp in pairs(lsp_clients) do
+		for _, package in ipairs(lsp.deps) do
+			install(lsp.package_manager, package, lsp.flags)
+		end
+	end
+end, {})
+
+vim.api.nvim_create_user_command("LspInstall", function(args)
+	local lsp = lsp_clients[args.args]
+	if lsp ~= nil then
+		for _, package in ipairs(lsp.deps) do
+			install(lsp.package_manager, package, lsp.flags)
+		end
+	else
+		print("available lsp_clients :")
+		for ls, _ in pairs(lsp_clients) do
+			print(ls)
+		end
+	end
+end, { nargs = 1 })
+
+-- Activate LSPs
 for server in pairs(lsp_clients) do
 	vim.lsp.enable(server)
 	require("lspconfig")[server].setup({ capabilities = require("blink.cmp").get_lsp_capabilities() })
@@ -60,29 +85,6 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 		end
 	end,
 })
-
--- CUSTOM COMMANDS
-vim.api.nvim_create_user_command("LspInstallAll", function()
-	for _, lsp in pairs(lsp_clients) do
-		for _, package in ipairs(lsp.deps) do
-			install(lsp.package_manager, package, lsp.flags)
-		end
-	end
-end, {})
-
-vim.api.nvim_create_user_command("LspInstall", function(args)
-	local lsp = lsp_clients[args.args]
-	if lsp ~= nil then
-		for _, package in ipairs(lsp.deps) do
-			install(lsp.package_manager, package, lsp.flags)
-		end
-	else
-		print("available lsp_clients :")
-		for ls, _ in pairs(lsp_clients) do
-			print(ls)
-		end
-	end
-end, { nargs = 1 })
 
 -- CUSTOM KEYBINDINGS
 
