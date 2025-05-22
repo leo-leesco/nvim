@@ -13,10 +13,8 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 		if vim.fn.glob(vim.fn.getcwd() .. "/*.bib") then
 			vim.print(".bib found")
 			vim.cmd("silent !bibtex '%:r' &")
-			vim.cmd(
-				"silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%' &")
-			vim.cmd(
-				"silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%' &")
+			vim.cmd("silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%' &")
+			vim.cmd("silent !pdflatex -shell-escape -interaction=nonstopmode -output-directory '%:p:h' '%' &")
 		end
 
 		-- toggle Preview to make sure the PDF is re-rendered
@@ -34,40 +32,81 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- Automatically commit lockfile after running Lazy Update (or Sync)
+-- autocommit and push to remote on LazyUpdate
 vim.api.nvim_create_autocmd("User", {
 	pattern = "LazyUpdate",
 	callback = function()
-		local repo_dir = "~/.config/nvim/"
-		local lockfile = repo_dir .. "lazy-lock.json"
+		-- wait for lazy-lock.json to be written to
+		vim.defer_fn(function()
+			local repo_dir = vim.fn.expand("~/.config/nvim")
+			local lockfile = "lazy-lock.json"
 
-		local cmd = {
-			"git",
-			"-C",
-			repo_dir,
-			"commit",
-			lockfile,
-			"-m",
-			"Update lazy-lock.json",
-		}
+			-- Check for changes
+			local diff_result = vim.system({
+				"git",
+				"-C",
+				repo_dir,
+				"diff",
+				"--quiet",
+				"--",
+				lockfile,
+			}):wait()
 
-		local success, process = pcall(function()
-			return vim.system(cmd):wait()
-		end)
-
-		if process and process.code == 0 then
-			vim.notify("Committed lazy-lock.json")
-			vim.notify(process.stdout)
-		else
-			if not success then
-				vim.notify("Failed to run command '" .. table.concat(cmd, " ") .. "':",
-					vim.log.levels.WARN, {})
-				vim.notify(tostring(process), vim.log.levels.WARN, {})
-			else
-				vim.notify("git ran but failed to commit:")
-				vim.notify(process.stdout, vim.log.levels.WARN, {})
+			if diff_result.code == 0 then
+				vim.notify("No changes to lazy-lock.json, skipping commit")
+				return
 			end
-		end
+
+			-- Stage the lockfile
+			local add_result = vim.system({
+				"git",
+				"-C",
+				repo_dir,
+				"add",
+				lockfile,
+			}):wait()
+			if add_result.code ~= 0 then
+				vim.notify("git add failed:\n" .. (add_result.stderr or add_result.stdout), vim.log.levels.WARN)
+				return
+			end
+
+			-- Commit the file
+			local commit_result = vim.system({
+				"git",
+				"-C",
+				repo_dir,
+				"commit",
+				"-m",
+				"Update lazy-lock.json",
+				"--",
+				lockfile,
+			}, { text = true }):wait()
+
+			if commit_result.code == 0 then
+				vim.notify("Committed lazy-lock.json")
+			else
+				vim.notify("git commit failed (exit " .. commit_result.code .. "):", vim.log.levels.WARN)
+				vim.notify("stdout:\n" .. (commit_result.stdout or "nil"), vim.log.levels.WARN)
+				vim.notify("stderr:\n" .. (commit_result.stderr or "nil"), vim.log.levels.WARN)
+				return
+			end
+
+			-- Push the commit
+			local push_result = vim.system({
+				"git",
+				"-C",
+				repo_dir,
+				"push",
+			}, { text = true }):wait()
+
+			if push_result.code == 0 then
+				vim.notify("Pushed lazy-lock.json update to remote")
+			else
+				vim.notify("git push failed (exit " .. push_result.code .. "):", vim.log.levels.WARN)
+				vim.notify("stdout:\n" .. (push_result.stdout or "nil"), vim.log.levels.WARN)
+				vim.notify("stderr:\n" .. (push_result.stderr or "nil"), vim.log.levels.WARN)
+			end
+		end, 1000) -- wait 1000ms (1s)
 	end,
 })
 
