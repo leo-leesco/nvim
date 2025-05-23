@@ -26,7 +26,6 @@ lsp_clients = {
 	clangd = { deps = { "llvm" }, package_manager = "brew" },
 }
 
-
 -- CUSTOM COMMANDS
 vim.api.nvim_create_user_command("LspInstallAll", function()
 	for _, lsp in pairs(lsp_clients) do
@@ -55,36 +54,6 @@ for server in pairs(lsp_clients) do
 	vim.lsp.enable(server)
 	require("lspconfig")[server].setup({ capabilities = require("blink.cmp").get_lsp_capabilities() })
 end
-
--- LANGUAGE SPECIFIC
--- OCaml
-vim.opt.rtp:prepend("~/.opam/default/share/ocp-indent/vim")
-
-local dune_job_id = nil
-vim.api.nvim_create_autocmd("BufReadPost", {
-	pattern = { "*.ml", "*.mli" },
-	callback = function()
-		if dune_job_id == nil then
-			dune_job_id = vim.fn.jobstart({ "dune", "build", "-w" }, {
-				detach = true, -- let it run independently
-			})
-			if dune_job_id > 0 then
-				vim.notify("Started dune build -w (job ID " .. dune_job_id .. ")", vim.log.levels.INFO)
-			else
-				vim.notify("Failed to start dune build -w", vim.log.levels.ERROR)
-			end
-		end
-	end,
-})
-
-vim.api.nvim_create_autocmd("VimLeavePre", {
-	callback = function()
-		if dune_job_id and dune_job_id > 0 then
-			vim.fn.jobstop(dune_job_id)
-			vim.notify("Stopped dune build -w", vim.log.levels.INFO)
-		end
-	end,
-})
 
 -- CUSTOM KEYBINDINGS
 
