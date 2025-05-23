@@ -106,23 +106,6 @@ vim.api.nvim_create_autocmd("User", {
 				vim.notify("stdout:\n" .. (push_result.stdout or "nil"), vim.log.levels.WARN)
 				vim.notify("stderr:\n" .. (push_result.stderr or "nil"), vim.log.levels.WARN)
 			end
-		end, 1000) -- wait 1000ms (1s)
+		end, 100) -- wait 100ms to make sure lazy-lock.json is written to
 	end,
 })
-
--- vim.api.nvim_create_autocmd("LspAttach", {
--- 	group = vim.api.nvim_create_augroup("lsp", { clear = true }),
--- 	callback = function(args)
--- 		vim.api.nvim_create_autocmd("BufWritePre", {
--- 			buffer = args.buf,
--- 			callback = function(args)
--- 				local conform = require("conform")
--- 				if #conform.list_formatters(args.buf) > 0 then
--- 					conform.format({ bufnr = args.buf })
--- 				else
--- 					vim.lsp.buf.format({ async = false, id = args.data.client_id })
--- 				end
--- 			end,
--- 		})
--- 	end,
--- })
