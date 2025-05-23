@@ -109,3 +109,23 @@ vim.api.nvim_create_autocmd("User", {
 		end, 100) -- wait 100ms to make sure lazy-lock.json is written to
 	end,
 })
+
+local grp = vim.api.nvim_create_augroup("SessionManager", { clear = true })
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	group = grp,
+	callback = function()
+		if vim.fn.argc() == 0 and vim.fn.filereadable(".vimsession") == 1 then
+			vim.cmd("source .vimsession")
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("VimLeavePre", {
+	group = grp,
+	callback = function()
+		if vim.fn.winnr("$") > 1 then
+			vim.cmd("mksession! .vimsession")
+		end
+	end,
+})
