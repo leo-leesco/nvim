@@ -48,7 +48,7 @@ vim.api.nvim_create_user_command("LspInstall", function(args)
 			print(ls)
 		end
 	end
-end, { nargs = 1 })
+end, { nargs = "?" })
 
 -- Activate LSPs
 for server in pairs(lsp_clients) do
