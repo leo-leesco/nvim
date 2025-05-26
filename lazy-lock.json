@@ -6,6 +6,7 @@
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "gitsigns.nvim": { "branch": "main", "commit": "8b729e489f1475615dc6c9737da917b3bc163605" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
+  "lazydev.nvim": { "branch": "main", "commit": "2367a6c0a01eb9edb0464731cc0fb61ed9ab9d2c" },
   "lazygit.nvim": { "branch": "main", "commit": "b9eae3badab982e71abab96d3ee1d258f0c07961" },
   "lualine.nvim": { "branch": "master", "commit": "0c6cca9f2c63dadeb9225c45bc92bb95a151d4af" },
   "markdown-preview.nvim": { "branch": "master", "commit": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee" },
