@@ -24,6 +24,7 @@ lsp_clients = {
 	-- agda-ls is not yet compatible with Adga 2.7
 	-- adga_ls = { deps = { "agda-language-server" }, package_manager = "stack", flags = "--allow-newer" }
 	clangd = { deps = { "llvm" }, package_manager = "brew" },
+	fish_lsp = { deps = { "fish-lsp" }, package_manager = "brew" },
 }
 
 -- CUSTOM COMMANDS
