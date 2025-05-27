@@ -1,17 +1,15 @@
 return {
-	-- Install nvim-cmp as a dependency
-	{
-		"hrsh7th/nvim-cmp",
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp", -- Required for LSP completions
-			"hrsh7th/cmp-path", -- Path completions
-			"hrsh7th/cmp-buffer", -- Buffer completions
-		},
-	},
-
-	-- Minuet-AI (now works since nvim-cmp is available)
 	{
 		"milanglacier/minuet-ai.nvim",
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+			dependencies = {
+				"hrsh7th/cmp-nvim-lsp", -- Required for LSP completions
+				"hrsh7th/cmp-path", -- Path completions
+				"hrsh7th/cmp-buffer", -- Buffer completions
+			},
+		},
+
 		opts = {
 			virtualtext = {
 				auto_trigger_ft = {},
@@ -25,6 +23,7 @@ return {
 				},
 			},
 
+			provider = "codestral",
 			provider_options = {
 				codestral = {
 					model = "codestral-latest",
