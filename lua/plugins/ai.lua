@@ -30,10 +30,6 @@ return {
 					end_point = "https://codestral.mistral.ai/v1/fim/completions",
 					api_key = "CODESTRAL_API_KEY",
 					stream = true,
-					template = {
-						prompt = "See [Prompt Section for default value]",
-						suffix = "See [Prompt Section for default value]",
-					},
 					optional = {
 						max_tokens = 256,
 						stop = { "\n\n" },
@@ -42,9 +38,6 @@ return {
 
 				openai = {
 					model = "gpt-4.1-mini",
-					system = "see [Prompt] section for the default value",
-					few_shots = "see [Prompt] section for the default value",
-					chat_input = "See [Prompt Section for default value]",
 					stream = true,
 					api_key = "OPENAI_API_KEY",
 					optional = {
