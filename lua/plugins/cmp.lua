@@ -60,7 +60,10 @@ return {
 			"folke/lazydev.nvim",
 		},
 		opts = {
-			keymap = { preset = "super-tab" },
+			keymap = {
+				preset = "super-tab",
+				["<A-y>"] = require("minuet").make_blink_map(),
+			},
 
 			appearance = {
 				nerd_font_variant = "mono",
@@ -68,7 +71,6 @@ return {
 
 			completion = {
 				documentation = { auto_show = false },
-				completeopt = "menu,menuone,noselect",
 				trigger = { prefetch_on_insert = false },
 			},
 
@@ -82,7 +84,6 @@ return {
 					},
 					snippets = {
 						name = "Snippets",
-						snippet_engine = "native",
 					},
 					minuet = {
 						name = "minuet",
