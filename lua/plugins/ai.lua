@@ -24,6 +24,7 @@ return {
 					dismiss = "<A-e>",
 				},
 			},
+
 			provider_options = {
 				codestral = {
 					model = "codestral-latest",
@@ -37,6 +38,22 @@ return {
 					optional = {
 						max_tokens = 256,
 						stop = { "\n\n" },
+					},
+				},
+
+				openai = {
+					model = "gpt-4.1-mini",
+					system = "see [Prompt] section for the default value",
+					few_shots = "see [Prompt] section for the default value",
+					chat_input = "See [Prompt Section for default value]",
+					stream = true,
+					api_key = "OPENAI_API_KEY",
+					optional = {
+						-- pass any additional parameters you want to send to OpenAI request,
+						-- e.g.
+						-- stop = { 'end' },
+						-- max_tokens = 256,
+						-- top_p = 0.9,
 					},
 				},
 			},
