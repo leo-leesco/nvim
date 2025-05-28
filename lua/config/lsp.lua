@@ -74,7 +74,7 @@ end)
 
 -- from kickstart.nvim
 vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+	group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 	callback = function(event)
 		-- NOTE: Remember that Lua is a real programming language, and as such it is possible
 		-- to define small helper and utility functions so you don't have to repeat yourself.
