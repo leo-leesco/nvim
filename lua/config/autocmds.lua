@@ -119,6 +119,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			vim.cmd("source .vimsession")
 		end
 	end,
+	nested = true,
 })
 
 vim.api.nvim_create_autocmd("VimLeavePre", {
