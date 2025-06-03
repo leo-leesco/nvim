@@ -4,7 +4,7 @@ return {
 		"garymjr/nvim-snippets",
 		keys = {
 			{
-				"<Tab>",
+				"<C-Right>",
 				function()
 					if vim.snippet.active({ direction = 1 }) then
 						vim.schedule(function()
@@ -12,14 +12,14 @@ return {
 						end)
 						return
 					end
-					return "<Tab>"
+					return "<C-Right>"
 				end,
 				expr = true,
 				silent = true,
 				mode = "i",
 			},
 			{
-				"<Tab>",
+				"<C-Right>",
 				function()
 					vim.schedule(function()
 						vim.snippet.jump(1)
@@ -30,7 +30,7 @@ return {
 				mode = "s",
 			},
 			{
-				"<S-Tab>",
+				"<C-Left>",
 				function()
 					if vim.snippet.active({ direction = -1 }) then
 						vim.schedule(function()
@@ -38,7 +38,7 @@ return {
 						end)
 						return
 					end
-					return "<S-Tab>"
+					return "<C-Left>"
 				end,
 				expr = true,
 				silent = true,
