@@ -45,10 +45,6 @@ return {
 				mode = { "i", "s" },
 			},
 		},
-		config = function()
-			require("vim.snippets").from_vscode("rafamadriz/friendly-snippets")
-			require("vim.snippets").from_vscode(vim.fn.stdpath("config") .. "/snippets")
-		end,
 	},
 
 	-- blink.cmp as the complete completion engine
@@ -61,7 +57,6 @@ return {
 		},
 		opts = {
 			keymap = {
-				preset = "super-tab",
 				["<A-y>"] = require("minuet").make_blink_map(),
 			},
 
