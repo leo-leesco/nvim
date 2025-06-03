@@ -41,9 +41,6 @@ return {
 			"folke/lazydev.nvim",
 		},
 		opts = {
-			keymap = {
-				["<A-y>"] = require("minuet").make_blink_map(),
-			},
 
 			appearance = {
 				nerd_font_variant = "mono",
@@ -58,7 +55,7 @@ return {
 			},
 
 			sources = {
-				default = { "lazydev", "lsp", "path", "buffer", "snippets", "minuet" },
+				default = { "lazydev", "lsp", "path", "buffer", "snippets" },
 				providers = {
 					lazydev = {
 						name = "LazyDev",
@@ -67,15 +64,6 @@ return {
 					},
 					snippets = {
 						name = "Snippets",
-					},
-					minuet = {
-						name = "minuet",
-						module = "minuet.blink",
-						async = true,
-						-- Should match minuet.config.request_timeout * 1000,
-						-- since minuet.config.request_timeout is in seconds
-						timeout_ms = 3000,
-						score_offset = 50, -- Gives minuet higher priority among suggestions
 					},
 				},
 			},
