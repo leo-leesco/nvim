@@ -7,35 +7,20 @@ return {
 				"<Tab>",
 				function()
 					if vim.snippet.active({ direction = 1 }) then
-						vim.schedule(function()
-							vim.snippet.jump(1)
-						end)
+						vim.snippet.jump(1)
 						return
 					end
 					return "<Tab>"
 				end,
 				expr = true,
 				silent = true,
-				mode = "i",
-			},
-			{
-				"<Tab>",
-				function()
-					vim.schedule(function()
-						vim.snippet.jump(1)
-					end)
-				end,
-				expr = true,
-				silent = true,
-				mode = "s",
+				mode = { "i", "s" },
 			},
 			{
 				"<S-Tab>",
 				function()
 					if vim.snippet.active({ direction = -1 }) then
-						vim.schedule(function()
-							vim.snippet.jump(-1)
-						end)
+						vim.snippet.jump(-1)
 						return
 					end
 					return "<S-Tab>"
