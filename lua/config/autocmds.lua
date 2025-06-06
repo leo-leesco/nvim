@@ -110,10 +110,10 @@ vim.api.nvim_create_autocmd("User", {
 	end,
 })
 
-local grp = vim.api.nvim_create_augroup("SessionManager", { clear = true })
+local session = vim.api.nvim_create_augroup("SessionManager", { clear = true })
 
 vim.api.nvim_create_autocmd("VimEnter", {
-	group = grp,
+	group = session,
 	callback = function()
 		if vim.fn.argc() == 0 and vim.fn.filereadable(".vimsession") == 1 then
 			vim.cmd("source .vimsession")
@@ -123,10 +123,32 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 vim.api.nvim_create_autocmd("VimLeavePre", {
-	group = grp,
+	group = session,
 	callback = function()
 		if vim.fn.winnr("$") > 1 then
 			vim.cmd("mksession! .vimsession")
 		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufReadPre", {
+	group = session,
+	callback = function(args)
+		vim.api.nvim_create_autocmd("FileType", {
+			buffer = args.buf,
+			once = true,
+			callback = function()
+				local ft = vim.bo[args.buf].filetype
+				local excluded = { xxd = true, gitrebase = true, [""] = true }
+				if ft:match("commit") or excluded[ft] then
+					return
+				end
+
+				local last_pos = vim.fn.line([['"]])
+				if last_pos >= 1 and last_pos <= vim.fn.line("$") then
+					vim.api.nvim_feedkeys('g`"', "n", false)
+				end
+			end,
+		})
 	end,
 })
