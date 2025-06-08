@@ -25,6 +25,7 @@ lsp_clients = {
 	-- adga_ls = { deps = { "agda-language-server" }, package_manager = "stack", flags = "--allow-newer" }
 	clangd = { deps = { "llvm" }, package_manager = "brew" },
 	fish_lsp = { deps = { "fish-lsp" }, package_manager = "brew" },
+	pyright = { deps = { "pyright" }, package_manager = "npm", flags = "-g" },
 }
 
 -- CUSTOM COMMANDS
