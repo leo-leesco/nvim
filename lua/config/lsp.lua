@@ -26,6 +26,7 @@ lsp_clients = {
 	clangd = { deps = { "llvm" }, package_manager = "brew" },
 	fish_lsp = { deps = { "fish-lsp" }, package_manager = "brew" },
 	pyright = { deps = { "pyright" }, package_manager = "pip3", flags = "--break-system-packages" },
+	taplo = { deps = { "taplo-cli" }, package_manager = "cargo", flags = "--locked" },
 }
 
 -- CUSTOM COMMANDS
