@@ -16,6 +16,11 @@ formatters = {
 		package_manager = "bun",
 		flags = "-g",
 	},
+	python = {
+		deps = { "yapf" },
+		package_manager = "pip3",
+		flags = "--break-system-packages",
+	},
 }
 
 formatters_by_ft = {}
