@@ -60,7 +60,7 @@ vim.api.nvim_create_user_command("Dune", function(opts)
 
 		on_stderr = function(_, data)
 			if data and data[1] ~= "" then
-				vim.notify(table.concat(data, "\n"), vim.log.levels.ERROR)
+				vim.notify(table.concat(data, "\n"), vim.log.levels.INFO)
 			end
 		end,
 
