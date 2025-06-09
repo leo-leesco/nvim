@@ -54,7 +54,7 @@ vim.api.nvim_create_user_command("FormatterInstall", function(args)
 			print(lang .. " : " .. formatter)
 		end
 	end
-end, { nargs = 1 })
+end, { nargs = "?" })
 
 vim.api.nvim_create_user_command("Format", function(args)
 	local range = nil
