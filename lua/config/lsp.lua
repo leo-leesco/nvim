@@ -5,10 +5,30 @@ end
 
 lsp_clients = {
 	lua_ls = { deps = { "lua-language-server" }, package_manager = "brew" },
-	marksman = { deps = { "marksman" }, package_manager = "brew" },
 	rust_analyzer = { deps = { "rust-analyzer" }, package_manager = "brew" },
+	pyright = { deps = { "pyright" }, package_manager = "pip3", flags = "--break-system-packages" },
 	ocamllsp = { deps = { "ocaml-lsp-server" }, package_manager = "opam", flags = "--yes" },
 	-- coq_lsp = { deps = { "coq-lsp" }, package_manager = "opam", flags = "--yes" },
+	-- agda-ls is not yet compatible with Adga 2.7
+	-- adga_ls = { deps = { "agda-language-server" }, package_manager = "stack", flags = "--allow-newer" },
+	clangd = { deps = { "llvm" }, package_manager = "brew" },
+	fish_lsp = { deps = { "fish-lsp" }, package_manager = "brew" },
+	taplo = { deps = { "taplo-cli" }, package_manager = "cargo", flags = "--locked" },
+
+	marksman = { deps = { "marksman" }, package_manager = "brew" },
+	emmet_language_server = {
+		deps = { "@olrtg/emmet-language-server" },
+		package_manager = "bun",
+		flags = "-g",
+	},
+	ts_ls = {
+		deps = {
+			"typescript-language-server",
+			"typescript",
+		},
+		package_manager = "bun",
+		flags = "-g",
+	},
 	astro = {
 		deps = {
 			"typescript-language-server",
@@ -18,17 +38,6 @@ lsp_clients = {
 			"@astrojs/language-server",
 			"@astrojs/ts-plugin",
 		},
-		package_manager = "bun",
-		flags = "-g",
-	},
-	-- agda-ls is not yet compatible with Adga 2.7
-	-- adga_ls = { deps = { "agda-language-server" }, package_manager = "stack", flags = "--allow-newer" }
-	clangd = { deps = { "llvm" }, package_manager = "brew" },
-	fish_lsp = { deps = { "fish-lsp" }, package_manager = "brew" },
-	pyright = { deps = { "pyright" }, package_manager = "pip3", flags = "--break-system-packages" },
-	taplo = { deps = { "taplo-cli" }, package_manager = "cargo", flags = "--locked" },
-	emmet_language_server = {
-		deps = { "@olrtg/emmet-language-server" },
 		package_manager = "bun",
 		flags = "-g",
 	},

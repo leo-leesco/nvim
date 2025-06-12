@@ -6,7 +6,22 @@ end
 -- The formatter should be the first package of the dependency list
 formatters = {
 	lua = { deps = { "stylua" }, package_manager = "brew" },
+	html = {
+		deps = { "prettier" },
+		package_manager = "bun",
+		flags = "-g",
+	},
+	css = {
+		deps = { "prettier" },
+		package_manager = "bun",
+		flags = "-g",
+	},
 	javascript = {
+		deps = { "prettier" },
+		package_manager = "bun",
+		flags = "-g",
+	},
+	typescript = {
 		deps = { "prettier" },
 		package_manager = "bun",
 		flags = "-g",
