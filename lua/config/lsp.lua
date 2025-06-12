@@ -28,7 +28,7 @@ lsp_clients = {
 	pyright = { deps = { "pyright" }, package_manager = "pip3", flags = "--break-system-packages" },
 	taplo = { deps = { "taplo-cli" }, package_manager = "cargo", flags = "--locked" },
 	emmet_language_server = {
-		deps = { "git+https://github.com/olrtg/emmet-language-server.git" },
+		deps = { "@olrtg/emmet-language-server" },
 		package_manager = "bun",
 		flags = "-g",
 	},
