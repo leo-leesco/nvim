@@ -30,5 +30,6 @@ vim.opt.confirm = true
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
--- modeline : starts with vim: and a series of options to be set
--- vim: tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+-- modeline : starts with "vim:" and a series of options to be set
+-- here, we set everything to work with tabs over spaces
+-- vim: tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
