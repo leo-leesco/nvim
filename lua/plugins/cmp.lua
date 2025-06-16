@@ -2,6 +2,7 @@ return {
 	-- Built-in snippets with nvim-snippets
 	{
 		"garymjr/nvim-snippets",
+
 		keys = {
 			{
 				"<C-Right>",
@@ -52,7 +53,6 @@ return {
 		"saghen/blink.cmp",
 		version = "1.*",
 		dependencies = {
-			"rafamadriz/friendly-snippets",
 			"folke/lazydev.nvim",
 		},
 		opts = {
@@ -79,6 +79,10 @@ return {
 					},
 					snippets = {
 						name = "Snippets",
+						opts = {
+							friendly_snippets = true,
+						},
+						module = "blink.cmp.sources.snippets",
 					},
 				},
 			},
