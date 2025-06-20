@@ -21,6 +21,11 @@ formatters = {
 		package_manager = "pip3",
 		flags = "--break-system-packages",
 	},
+	ocaml = {
+		deps = { "ocamlformat" },
+		package_manager = "opam",
+		flags = "--yes",
+	},
 }
 
 formatters_by_ft = {}
