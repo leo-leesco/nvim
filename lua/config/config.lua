@@ -1,3 +1,11 @@
+-- vim.o.<option> = <value> is exactly like :set <option>=<value>
+-- vim.opt.<option> = {<value1>,<value3>,…} is exactly like :set <option> = <value1>,<value2>,…
+--
+-- using the second form is more convenient because it allows to mimic :set+= :set^= and :set-= with
+-- vim.opt.<option>:append vim.opt.<option>:prepend and vim.opt.<option>:remove
+--
+-- note that vim.opt comes in two flavours : vim.opt_local and vim.opt_global
+
 -- Save undo history
 vim.opt.undofile = true
 
@@ -20,6 +28,8 @@ vim.opt.splitbelow = true
 -- See `:help 'confirm'`
 vim.opt.confirm = true
 
-vim.o.completeopt = "menu,menuone,noselect"
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
--- vim: ts=2 sts=2 sw=2 et
+-- modeline : starts with "vim:" and a series of options to be set
+-- here, we set everything to work with tabs over spaces
+-- vim: tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
