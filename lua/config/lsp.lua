@@ -8,7 +8,7 @@ lsp_clients = {
 	rust_analyzer = { deps = { "rust-analyzer" }, package_manager = "brew" },
 	pyright = { deps = { "pyright" }, package_manager = "pip3", flags = "--break-system-packages" },
 	ocamllsp = { deps = { "ocaml-lsp-server" }, package_manager = "opam", flags = "--yes" },
-	-- coq_lsp = { deps = { "coq-lsp" }, package_manager = "opam", flags = "--yes" },
+	coq_lsp = { deps = { "coq-lsp" }, package_manager = "opam", flags = "--yes" },
 	-- agda-ls is not yet compatible with Adga 2.7
 	-- adga_ls = { deps = { "agda-language-server" }, package_manager = "stack", flags = "--allow-newer" },
 	clangd = { deps = { "llvm" }, package_manager = "brew" },
@@ -159,10 +159,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- When you move your cursor, the highlights will be cleared (the second autocommand).
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		if
-			client
-			and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
+		    client
+		    and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
 		then
-			local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+			local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight",
+				{ clear = false })
 			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 				buffer = event.buf,
 				group = highlight_augroup,
@@ -179,7 +180,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
 				callback = function(event2)
 					vim.lsp.buf.clear_references()
-					vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+					vim.api.nvim_clear_autocmds({
+						group = "kickstart-lsp-highlight",
+						buffer = event2
+						    .buf
+					})
 				end,
 			})
 		end
