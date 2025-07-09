@@ -9,12 +9,11 @@ lsp_clients = {
 	pyright = { deps = { "pyright" }, package_manager = "pip3", flags = "--break-system-packages" },
 	ocamllsp = { deps = { "ocaml-lsp-server" }, package_manager = "opam", flags = "--yes" },
 	coq_lsp = { deps = { "coq-lsp" }, package_manager = "opam", flags = "--yes" },
-	-- agda-ls is not yet compatible with Adga 2.7
-	-- adga_ls = { deps = { "agda-language-server" }, package_manager = "stack", flags = "--allow-newer" },
+	vscoqtop = { deps = { "vscoq-language-server" }, package_manager = "opam", flags = "--yes" },
 	clangd = { deps = { "llvm" }, package_manager = "brew" },
 	fish_lsp = { deps = { "fish-lsp" }, package_manager = "brew" },
 	taplo = { deps = { "taplo-cli" }, package_manager = "cargo", flags = "--locked" },
-
+	hls = { deps = { "haskell-language-server" }, package_manager = "brew" },
 	marksman = { deps = { "marksman" }, package_manager = "brew" },
 	emmet_language_server = {
 		deps = { "@olrtg/emmet-language-server" },
