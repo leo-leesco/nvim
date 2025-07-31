@@ -67,8 +67,8 @@ end, { nargs = "?" })
 
 -- Activate LSPs
 for server in pairs(lsp_clients) do
+	vim.lsp.config(server, { capabilities = require("blink.cmp").get_lsp_capabilities() })
 	vim.lsp.enable(server)
-	require("lspconfig")[server].setup({ capabilities = require("blink.cmp").get_lsp_capabilities() })
 end
 
 -- CUSTOM KEYBINDINGS
