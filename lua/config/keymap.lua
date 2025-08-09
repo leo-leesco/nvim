@@ -19,9 +19,6 @@ tnoremap <Esc><Esc> <C-\><C-n>
 
 "" guardrails again CAPSLOCK
 nnoremap U :echo " < < ===== C H E C K   C A P S   L O C K ===== > > "<CR>
-
-"" make decrement operator more natural
-nnoremap <C-S-A> <C-X>
 ]])
 
 vim.api.nvim_create_user_command("W", function()
