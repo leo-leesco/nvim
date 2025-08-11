@@ -3,9 +3,12 @@ return {
 	lazy = false, -- we don't want to lazy load VimTeX
 	-- tag = "v2.15", -- uncomment to pin to a specific release
 	build = function()
+		-- prevent TeXShop from reaching the foreground on save
+		os.execute("defaults write TeXShop BringPdfFrontOnAutomaticUpdate NO")
+
+		-- inverse search for TeXShop
 		os.execute("defaults write TeXShop OtherEditorSync YES")
 		os.execute("defaults write TeXShop UseExternalEditor -bool true")
-		os.execute("defaults write TeXShop BringPdfFrontOnAutomaticUpdate NO")
 		os.execute("sudo mkdir -p /usr/local/bin/")
 
 		local tmp_path = "/tmp/othereditor"
