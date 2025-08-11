@@ -5,6 +5,7 @@ return {
 	build = function()
 		os.execute("defaults write TeXShop OtherEditorSync YES")
 		os.execute("defaults write TeXShop UseExternalEditor -bool true")
+		os.execute("defaults write TeXShop BringPdfFrontOnAutomaticUpdate NO")
 		os.execute("sudo mkdir -p /usr/local/bin/")
 
 		local tmp_path = "/tmp/othereditor"
