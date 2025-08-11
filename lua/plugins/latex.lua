@@ -16,5 +16,6 @@ return {
 	init = function()
 		-- VimTeX configuration goes here, e.g.
 		vim.g.vimtex_view_method = "texshop"
+		vim.g.vimtex_view_texshop_activate = 0
 	end
 }
