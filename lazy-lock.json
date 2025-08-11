@@ -30,6 +30,7 @@
   "todo-comments.nvim": { "branch": "main", "commit": "304a8d204ee787d2544d8bc23cd38d2f929e7cc5" },
   "trouble.nvim": { "branch": "main", "commit": "85bedb7eb7fa331a2ccbecb9202d8abba64d37b3" },
   "undotree": { "branch": "master", "commit": "28f2f54a34baff90ea6f4a735ef1813ad875c743" },
+  "vimtex": { "branch": "master", "commit": "0f96a6fc75136285b3ddc13b5ba5c100bc59cfae" },
   "vscoq.nvim": { "branch": "main", "commit": "f29200e91dd95953ff96d1b9cbf57570b2face5e" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" }
 }

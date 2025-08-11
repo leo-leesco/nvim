@@ -1,17 +1,21 @@
 return {
-	"lervag/vimtex",
+	"leo-leesco/vimtex",
 	lazy = false, -- we don't want to lazy load VimTeX
 	-- tag = "v2.15", -- uncomment to pin to a specific release
 	build = function()
-		-- inverse search for TeXShop
 		os.execute("defaults write TeXShop OtherEditorSync YES")
 		os.execute("defaults write TeXShop UseExternalEditor -bool true")
 		os.execute("sudo mkdir -p /usr/local/bin/")
 
-		local f = io.open("/usr/local/bin/othereditor", "w")
+		local tmp_path = "/tmp/othereditor"
+		local f = io.open(tmp_path, "w")
+		assert(f, "Failed to open temp file for writing")
 		f:write([[nvim --headless -c "VimtexInverseSearch $1 '$2'"]])
 		f:close()
-		os.execute("sudo chmod +x /usr/local/bin/othereditor")
+
+		local othereditor = " /usr/local/bin/othereditor"
+		os.execute("sudo mv " .. tmp_path .. othereditor)
+		os.execute("sudo chmod +x" .. othereditor)
 	end,
 	init = function()
 		-- VimTeX configuration goes here, e.g.
