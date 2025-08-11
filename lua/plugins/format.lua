@@ -41,6 +41,10 @@ formatters = {
 		package_manager = "opam",
 		flags = "--yes",
 	},
+	tex = {
+		deps = { "latexindent" },
+		package_manager = "brew",
+	}
 }
 
 formatters_by_ft = {}
