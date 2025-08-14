@@ -22,8 +22,9 @@ return {
 		os.execute("sudo chmod +x" .. othereditor)
 	end,
 	init = function()
-		-- VimTeX configuration goes here, e.g.
 		vim.g.vimtex_view_method = "texshop"
 		vim.g.vimtex_view_texshop_activate = 0
+
+		vim.g.vimtex_imaps_leader = "@"
 	end
 }
