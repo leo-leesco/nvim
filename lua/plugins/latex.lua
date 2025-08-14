@@ -25,6 +25,13 @@ return {
 		vim.g.vimtex_view_method = "texshop"
 		vim.g.vimtex_view_texshop_activate = 0
 
+		-- abbreviations
 		vim.g.vimtex_imaps_leader = "@"
-	end
+
+
+		vim.g.vimtex_quickfix_ignore_filters = {
+			'Underfull',
+			'Overfull',
+		}
+	end,
 }
