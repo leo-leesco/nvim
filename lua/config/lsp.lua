@@ -45,6 +45,10 @@ lsp_clients = {
 		package_manager = "cargo",
 		flags = "--locked --tag v5.23.1 --git",
 	},
+	ltex_plus = {
+		deps = { "ltex-ls-plus" },
+		package_manager = "brew",
+	},
 }
 
 -- CUSTOM COMMANDS
