@@ -1,13 +1,20 @@
 -- Add any additional autocmds here
 -- with `vim.api.nvim_create_autocmd`
 
-vim.api.nvim_create_augroup("_vimtex", { clear = true })
+vim.api.nvim_create_augroup("Vimtex", { clear = true })
 
 vim.api.nvim_create_autocmd("User", {
 	pattern = "VimtexEventInitPost",
-	group = "_vimtex",
+	group = "Vimtex",
 	callback = function()
 		vim.cmd("VimtexCompile")
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+	pattern = "*.typ",
+	callback = function()
+		vim.cmd("TypstPreview")
 	end,
 })
 
