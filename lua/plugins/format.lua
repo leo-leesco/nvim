@@ -44,15 +44,25 @@ formatters = {
 	tex = {
 		deps = { "latexindent" },
 		package_manager = "brew",
-	}
+	},
+	-- typst = {
+	-- 	formatter = "tinymist",
+	-- 	deps = { "https://github.com/Myriad-Dreamin/tinymist" },
+	-- 	package_manager = "cargo",
+	-- 	flags = "--locked tinymist-cli --git",
+	-- },
 }
 
 formatters_by_ft = {}
 for lang, install_spec in pairs(formatters) do
-	if formatters_by_ft[lang] == nil then
-		formatters_by_ft[lang] = { install_spec["deps"][1] }
+	if install_spec["formatter"] == nil then
+		if formatters_by_ft[lang] == nil then
+			formatters_by_ft[lang] = { install_spec["deps"][1] }
+		else
+			formatters_by_ft[lang].insert(install_spec["deps"][1])
+		end
 	else
-		formatters_by_ft[lang].insert(install_spec["deps"][1])
+		formatters_by_ft[lang] = { install_spec["formatter"] }
 	end
 	-- print(lang .. ":" .. install_spec["deps"][1])
 end
