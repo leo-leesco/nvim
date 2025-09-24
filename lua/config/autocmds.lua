@@ -6,8 +6,11 @@ vim.api.nvim_create_augroup("Vimtex", { clear = true })
 vim.api.nvim_create_autocmd("User", {
 	pattern = "VimtexEventInitPost",
 	group = "Vimtex",
-	callback = function()
-		vim.cmd("VimtexCompile")
+	callback = function(args)
+		local bufname = vim.api.nvim_buf_get_name(args.buf)
+		if bufname:match("%.tex$") then
+			vim.cmd("VimtexCompile")
+		end
 	end,
 })
 
