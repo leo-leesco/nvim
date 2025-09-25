@@ -44,5 +44,6 @@ return {
 		{ "]<leader>", ":CornelisNextGoal<CR>" },
 		{ "<C-A>",     ":CornelisInc<CR>" },
 		{ "<C-X>",     ":CornelisDec<CR>" },
+		{ "<leader>?", ":CornelisQuestionToMeta<CR>" },
 	}
 }
