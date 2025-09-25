@@ -26,6 +26,10 @@ return {
 		au BufWritePost *.agda :CornelisLoad
 		au BufReadPost *.agda,*.lagda* :CornelisLoad
 		]]
+		vim.o.expandtab = true
+		vim.o.tabstop = 2
+		vim.o.softtabstop = 2
+		vim.o.shiftwidth = 2
 	end,
 	keys = {
 		{ "<leader>l", ":CornelisLoad<CR>" },
