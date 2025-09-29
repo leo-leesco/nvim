@@ -8,7 +8,7 @@ lsp_clients = {
 	rust_analyzer = { deps = { "rust-analyzer" }, package_manager = "brew" },
 	pyright = { deps = { "pyright" }, package_manager = "pip3", flags = "--break-system-packages" },
 	ocamllsp = { deps = { "ocaml-lsp-server" }, package_manager = "opam", flags = "--yes" },
-	vscoqtop = { deps = { "vscoq-language-server" }, package_manager = "opam", flags = "--yes" },
+	coq_lsp = { deps = { "coq-lsp" }, package_manager = "opam", flags = "--yes" },
 	clangd = { deps = { "llvm" }, package_manager = "brew" },
 	fish_lsp = { deps = { "fish-lsp" }, package_manager = "brew" },
 	taplo = { deps = { "taplo-cli" }, package_manager = "cargo", flags = "--locked" },
