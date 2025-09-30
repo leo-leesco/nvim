@@ -17,5 +17,14 @@ return {
 				end,
 			}
 		)
+		vim.api.nvim_create_autocmd(
+			{ "CursorMoved", "CursorMovedI" },
+			{
+				pattern = { "coq", "*.v" },
+				callback = function(_)
+					vim.fn.execute("RocqToLine")
+				end,
+			}
+		)
 	end
 }
