@@ -1,9 +1,9 @@
-function install(package_manager, package, flags)
+local function install(package_manager, package, flags)
 	local sh_cmd = "!" .. package_manager .. " install " .. (flags or "") .. " " .. package
 	vim.cmd(sh_cmd)
 end
 
-lsp_clients = {
+local lsp_clients = {
 	lua_ls = { deps = { "lua-language-server" }, package_manager = "brew" },
 	rust_analyzer = { deps = { "rust-analyzer" }, package_manager = "brew" },
 	pyright = { deps = { "pyright" }, package_manager = "pip3", flags = "--break-system-packages" },
