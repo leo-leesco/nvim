@@ -3,6 +3,8 @@ return {
 	filetype = { "coq", "*.v" },
 	config = function()
 		vim.g.coqtail_coq_path = "/opt/homebrew/bin/"
+		vim.g.coqtail_noimap = true
+
 		vim.cmd [[ "follow the colorscheme used"
 			hi def link CoqtailChecked DiffAdd
 			hi def link CoqtailSent    DiffChange
