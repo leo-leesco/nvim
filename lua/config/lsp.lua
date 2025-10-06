@@ -53,6 +53,11 @@ local lsp_clients = {
 		package_manager = "cargo",
 		flags = "--locked tinymist-cli --git",
 	},
+	vimls = {
+		deps = { "vim-language-server" },
+		package_manager = "bun",
+		flags = "-g",
+	},
 }
 
 -- CUSTOM COMMANDS
