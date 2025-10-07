@@ -58,18 +58,6 @@ local lsp_clients = {
 		package_manager = "npm",
 		flags = "-g",
 	},
-	dolmenls = {
-		deps = {
-			"dolmen_bin",
-			"dolmen_lsp",
-			"dolmen",
-			"dolmen_type",
-			"dolmen_loop",
-			"dolmen_model",
-		},
-		package_manager = "opam",
-		flags = "-y",
-	},
 }
 
 -- CUSTOM COMMANDS
