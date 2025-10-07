@@ -55,7 +55,7 @@ local lsp_clients = {
 	},
 	vimls = {
 		deps = { "vim-language-server" },
-		package_manager = "bun",
+		package_manager = "npm",
 		flags = "-g",
 	},
 	dolmenls = {
