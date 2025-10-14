@@ -1,4 +1,4 @@
-vim.api.nvim_create_user_command("Venv", function()
+vim.api.nvim_create_user_command("Venv", function(opts)
 	local input_path = opts.args ~= "" and vim.fn.fnamemodify(opts.args, ":p") or nil
 
 	local function find_venv_dir(path)
@@ -75,3 +75,11 @@ end, {
 	nargs = "*",
 	complete = "shellcmd",
 })
+
+vim.api.nvim_create_autocmd("FileType",
+	{
+		pattern = "python",
+		callback = function()
+			vim.opt_local.makeprg = "python3 %"
+		end
+	})
