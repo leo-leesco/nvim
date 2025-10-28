@@ -28,5 +28,9 @@ return {
 				end,
 			}
 		)
+
+		vim.cmd [[
+		digraph! \|- 8866
+		]]
 	end
 }
