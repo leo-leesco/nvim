@@ -2,7 +2,6 @@ return {
 	'whonore/Coqtail',
 	filetype = { "coq", "*.v" },
 	config = function()
-		vim.g.coqtail_coq_path = "/opt/homebrew/bin/"
 		vim.g.coqtail_noimap = true
 
 		vim.cmd [[ "follow the colorscheme used"
@@ -31,6 +30,7 @@ return {
 
 		vim.cmd [[
 		digraph! \|- 8866
+		digraph! \|= 8872
 		]]
 	end
 }
