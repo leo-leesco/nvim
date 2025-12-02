@@ -1,4 +1,12 @@
 vim.cmd([[
+"" digraphs
+digraph! bN 8469
+digraph! bZ 8484
+digraph! bQ 8474
+digraph! bR 8477
+digraph! bC 8450
+digraph! bP 8473
+
 "" easier navigation between vim panes
 nnoremap <C-H> <C-W>h
 nnoremap <C-J> <C-W>j
