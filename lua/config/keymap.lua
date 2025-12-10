@@ -19,6 +19,12 @@ nmap <C-W>j <C-W>J
 nmap <C-W>k <C-W>K
 nmap <C-W>l <C-W>L
 
+"" copy paste from system clipboard
+nmap <leader>y "+y
+nmap <leader>p "+p
+vmap <leader>y "+y
+vmap <leader>p "+p
+
 "" disable highlight when pressing <Esc>
 nnoremap <silent> <Esc> :noh<CR><Esc>
 
