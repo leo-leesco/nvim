@@ -46,5 +46,6 @@ return {
 		{ "<C-A>",     ":CornelisInc<CR>",              ft = "agda" },
 		{ "<C-X>",     ":CornelisDec<CR>",              ft = "agda" },
 		{ "<leader>?", ":CornelisQuestionToMeta<CR>",   ft = "agda" },
+		{ "<leader>p", ":CornelisHelperFunc<CR>",       ft = "agda" }, -- this copies the current goal to the yank register
 	}
 }
