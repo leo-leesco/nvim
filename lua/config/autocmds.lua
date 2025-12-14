@@ -1,6 +1,7 @@
 -- Add any additional autocmds here
 -- with `vim.api.nvim_create_autocmd`
 
+-- {{{
 vim.api.nvim_create_augroup("Vimtex", { clear = true })
 
 vim.api.nvim_create_autocmd("User", {
@@ -13,6 +14,7 @@ vim.api.nvim_create_autocmd("User", {
 		end
 	end,
 })
+-- }}}
 
 vim.api.nvim_create_autocmd("BufReadPost", {
 	pattern = "*.typ",
@@ -28,6 +30,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- {{{
 -- autocommit and push to remote on LazyUpdate
 vim.api.nvim_create_autocmd("User", {
 	pattern = "LazyUpdate",
@@ -106,7 +109,9 @@ vim.api.nvim_create_autocmd("User", {
 		end, 100) -- wait 100ms to make sure lazy-lock.json is written to
 	end,
 })
+--}}}
 
+--{{{
 local session = vim.api.nvim_create_augroup("SessionManager", { clear = true })
 
 vim.api.nvim_create_autocmd("VimEnter", {
@@ -148,4 +153,29 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 			end,
 		})
 	end,
+})
+--}}}
+
+vim.api.nvim_create_augroup("ocaml", { clear = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "ocaml" },
+	callback = function()
+		vim.opt.makeprg = "dune"
+		vim.opt.errorformat = {
+			-- Ignore lines containing 'dune' or 'runtime'
+			[[%-G%.%#dune%.%#]],
+			[[%-G%.%#runtime%.%#]],
+
+			[[%DEntering directory '%f']],
+			[[%XLeaving directory '%f']],
+
+			-- match lines starting with 'File "<filename>", line ...'
+			[[%E%.%#File "%f"\, line %l\, characters %c-%k: %m]],
+			[[%E%.%#file "%f"\, line %l\, characters %c-%k]],
+
+			-- ignore everything else
+			[[%-G%.%#]]
+		}
+	end
 })
