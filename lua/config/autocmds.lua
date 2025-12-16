@@ -177,5 +177,49 @@ vim.api.nvim_create_autocmd("FileType", {
 			-- ignore everything else
 			[[%-G%.%#]]
 		}
+
+		_G.OcamlQfTextFunc = function(info)
+			local items
+			-- 'info' contains the list ID (info.id) and other context.
+			-- We fetch the raw items associated with this ID.
+			if info.quickfix == 1 then
+				items = vim.fn.getqflist({ id = info.id, items = 0 }).items
+			else
+				items = vim.fn.getloclist(info.winid, { id = info.id, items = 0 }).items
+			end
+
+			local formatted = {}
+
+			for i = info.start_idx, info.end_idx do
+				local e = items[i]
+				local str = ""
+
+				-- A. Reconstruct the file location info (Standard Vim look)
+				-- If it's a valid file error, add "filename|line col|"
+				if e.valid == 1 then
+					local fname = ""
+					if e.bufnr > 0 then
+						-- Get relative path for cleaner display
+						fname = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(e.bufnr), ":.")
+					end
+					str = string.format("%s|%d col %d| ", fname, e.lnum, e.col)
+				else
+					-- If it's just a message (e.g. from our "dune" noise filters), keep it simple
+					str = ""
+				end
+
+				-- B. Unescape the text (\206 -> Unicode)
+				local raw_text = e.text
+				local clean_text = raw_text:gsub("\\(%d%d%d)", function(d)
+					return string.char(tonumber(d))
+				end)
+
+				-- C. Combine them
+				table.insert(formatted, str .. clean_text)
+			end
+
+			return formatted
+		end
+		vim.opt.quickfixtextfunc = 'v:lua.OcamlQfTextFunc'
 	end
 })
