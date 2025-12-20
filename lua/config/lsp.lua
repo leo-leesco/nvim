@@ -58,10 +58,10 @@ local lsp_clients = {
 		package_manager = "npm",
 		flags = "-g",
 	},
-	intelephense = {
-		deps = { "intelephense" },
-		package_manager = "bun",
-		flags = "-g",
+	phpactor = {
+		deps = { "phpactor.phar https://github.com/phpactor/phpactor/releases/latest/download/phpactor.phar && chmod a+x phpactor.phar && mv phpactor.phar ~/.local/bin/phpactor" },
+		package_manager = "curl",
+		flags = "-Lo",
 	},
 }
 
