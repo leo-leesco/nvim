@@ -58,6 +58,11 @@ local lsp_clients = {
 		package_manager = "npm",
 		flags = "-g",
 	},
+	intelephense = {
+		deps = { "intelephense" },
+		package_manager = "bun",
+		flags = "-g",
+	},
 }
 
 -- CUSTOM COMMANDS
