@@ -35,6 +35,9 @@ vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = false
 
+vim.cmd('syntax on')
+vim.cmd('filetype plugin indent on')
+
 -- modeline : starts with "vim:" and a series of options to be set
 -- here, we set everything to work with tabs over spaces
 -- vim: tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
