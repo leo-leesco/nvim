@@ -1,7 +1,7 @@
 return {
 	{
 		"olrtg/nvim-emmet",
-		ft = { "html", "css", "javascript", "typescript", "astro" },
+		ft = { "html", "css", "javascript", "typescript", "astro", "php" },
 		config = function()
 			vim.keymap.set({ "n", "v" }, "<leader>xe", require("nvim-emmet").wrap_with_abbreviation)
 		end,
