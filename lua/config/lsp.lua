@@ -91,6 +91,35 @@ end, { nargs = "?" })
 -- enable formatting for typst source files
 vim.lsp.config("tinymist", { settings = { formatterMode = "typstyle" } })
 
+-- PHP specific
+-- Allow 'gf' to work on lines like: require $root . '/path/file.php';
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "php",
+	callback = function()
+		-- 1. Find the project root directory (looks for .git, composer.json, or specific markers)
+		-- 'vim.fs.find' scans upward from the current file
+		local root_files = function(marker)
+			return vim.fs.find(marker,
+				{ path = vim.api.nvim_buf_get_name(0), upward = true, stop = vim.env.HOME, limit = 1 })
+		end
+
+		for _, marker in ipairs({ ".gitmodules", ".git", "composer.json", "index.php", "index.html" }) do
+			local root = root_files(marker)
+			if root and #root > 0 then
+				-- 2. Extract the directory path from the result
+				local project_root = vim.fs.dirname(root[1])
+
+				-- 3. Append it to the 'path' option
+				-- Now 'gf' will look for files relative to this folder
+				vim.opt_local.path:append(project_root)
+
+				-- Debug: verify it found the right root (uncomment to test)
+				-- vim.notify(marker .. " -> Added to path: " .. project_root)
+			end
+		end
+	end
+})
+
 -- Activate LSPs
 for server in pairs(lsp_clients) do
 	vim.lsp.config(server, { capabilities = require("blink.cmp").get_lsp_capabilities() })
@@ -102,6 +131,11 @@ end
 -- show diagnostics
 vim.keymap.set("n", "gk", function()
 	vim.diagnostic.open_float()
+end, { noremap = true })
+
+-- go to definition
+vim.keymap.set("n", "gd", function()
+	vim.lsp.buf.definition()
 end, { noremap = true })
 
 -- toggle phantom diagnostics
