@@ -24,3 +24,16 @@ vim.opt.breakindent = true
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "php",
+	callback = function()
+		local file_path = vim.api.nvim_buf_get_name(0)
+
+        -- Check if the file is inside your specific project folder
+        -- Change "TD4_prover" to your actual folder name
+        if file_path:match("Compta") then
+            vim.opt_local.fileencoding = "iso-8859-15"
+        end
+	end
+})
