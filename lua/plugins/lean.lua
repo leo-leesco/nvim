@@ -19,5 +19,9 @@ return {
 	---@type lean.Config
 	opts = { -- see below for full configuration options
 		mappings = true,
+		infoview = {
+			width = 1/3,
+			height = 1/3,
+			orientation= "auto",
 	}
 }
