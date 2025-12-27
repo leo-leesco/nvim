@@ -1,13 +1,15 @@
 # `neovim` config
 
 I restarted (yet again) my config in order to leverage as much as possible the built-in features of `vim` as I feel that those features are both more idiomatic (in a `vim` way) and extremely powerful. Here is a list of features that I want to leverage rather than rely on plugins :
-- LSP (`neovim` feature)
+- [LSP](#lsp) (`neovim` feature)
 - syntax highlighting through `treesitter` (`neovim` feature)
 - `make`
 - tags and marks
 - folds
+- completion
 
-Other features can be supplied through plugins, but I really strive to first make use of the built-in functionnalities in order to have a streamlined workflow across languages.
+Other features can be supplied through plugins, but I really strive to first make use of the built-in functionnalities in order to have a streamlined workflow across languages. Here is a short list of other features :
+- [empty so far]
 
 The features loaded by `vim` are loaded by default from those folders :
 	  filetype.lua	filetypes
@@ -31,7 +33,12 @@ The features loaded by `vim` are loaded by default from those folders :
 	  syntax/	syntax files
 	  tutor/	tutorial files
 
-
 ## LSP
 
-I will be using `nvim-lspconfig` to configure various `lsp`s. The config files will be stored in `lsp/`
+I will be using `nvim-lspconfig` to configure various `lsp`s. The config files will be stored in `lsp/` and sourced from `https://github.com/neovim/nvim-lspconfig.git/lsp/`, with a few tweaks :
+- they contain a built-in install script for the actual LSP
+- they are automatically loaded on the correct filetype 
+
+## `treesitter`
+
+The relevant files are stored in `queries/` and 
