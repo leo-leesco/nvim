@@ -20,16 +20,19 @@ return {
 		}
 	},
 	version = '*',
+
 	config = function()
 		vim.cmd [[
 		au QuitPre *.agda :CornelisCloseInfoWindows
 		au BufWritePost *.agda :CornelisLoad
 		au BufReadPost *.agda,*.lagda* :CornelisLoad
 		]]
+
 		vim.o.expandtab = true
 		vim.o.tabstop = 1
 		vim.o.softtabstop = 1
 		vim.o.shiftwidth = 1
+
 	end,
 	keys = {
 		{ "<leader>l", ":CornelisRestart<CR>",          ft = "agda" },
