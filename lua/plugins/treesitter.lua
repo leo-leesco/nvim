@@ -36,19 +36,24 @@ languages = {
 return {
 	"nvim-treesitter/nvim-treesitter",
 	lazy = false,
+	branch = "main",
+
 	build = {
-		vim.system({ "bun", "install", "-g", "tree-sitter-cli" }, { text = true }, function(obj)
-			vim.schedule(function()
-				if obj.code == 0 then
-					vim.notify("Output: " .. obj.stdout, vim.log.levels.INFO)
-				else
-					vim.notify("Error: " .. obj.stderr, vim.log.levels.ERROR)
-				end
+		function()
+			vim.system({ "bun", "install", "-g", "tree-sitter-cli" }, { text = true }, function(obj)
+				vim.schedule(function()
+					if obj.code == 0 then
+						vim.notify("Output: " .. obj.stdout, vim.log.levels.INFO)
+					else
+						vim.notify("Error: " .. obj.stderr, vim.log.levels.ERROR)
+					end
+				end)
 			end)
-		end),
+		end,
 		":TSUpdate",
 	},
-	main = "nvim-treesitter.configs", -- Sets main module to use for opts
+
+	-- main = "nvim-treesitter.configs", -- Sets main module to use for opts
 	opts = {
 		ensure_installed = languages,
 		highlight = {
