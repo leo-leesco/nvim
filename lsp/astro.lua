@@ -14,7 +14,10 @@ return {
 	cmd = { "astro-ls", "--stdio" },
 	filetypes = { "astro" },
 	root_markers = {
-		"astro.config.*",
+		"astro.config.mjs",
+		"astro.config.ts",
+		"astro.config.js",
+		"astro.config.js",
 		"package.json",
 		"tsconfig.json",
 		"jsconfig.json",
