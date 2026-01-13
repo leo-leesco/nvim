@@ -50,12 +50,13 @@ return {
 				end)
 			end)
 		end,
+		function()
+			require 'nvim-treesitter'.install(languages)
+		end,
 		":TSUpdate",
 	},
 
-	-- main = "nvim-treesitter.configs", -- Sets main module to use for opts
 	opts = {
-		ensure_installed = languages,
 		highlight = {
 			enable = true,
 		},
