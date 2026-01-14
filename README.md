@@ -13,26 +13,29 @@ Other features can be supplied through plugins, but I really strive to first mak
 - [empty so far]
 
 The features loaded by `vim` are loaded by default from those folders :
-	  filetype.lua	filetypes
-	  autoload/	automatically loaded scripts
-	  colors/	color scheme files
-	  compiler/	compiler files
-	  doc/		documentation
-	  ftplugin/	filetype plugins
-	  indent/	indent scripts
-	  keymap/	key mapping files
-	  lang/		menu translations
-	  lsp/		LSP client configurations
-	  lua/		|Lua| plugins
-	  menu.vim	GUI menus
-	  pack/		packages
-	  parser/	|treesitter| syntax parsers
-	  plugin/	plugin scripts
-	  queries/	|treesitter| queries
-	  rplugin/	|remote-plugin| scripts
-	  spell/	spell checking files
-	  syntax/	syntax files
-	  tutor/	tutorial files
+- **(./ftdetect/) : filetype detection**
+- filetype.lua : filetypes
+- autoload/ : automatically loaded scripts
+- colors/ : color scheme files
+- compiler/ : compiler files
+- doc/ : 	documentation
+- **ftplugin/ : filetype plugins**
+- indent/ : indent scripts
+- keymap/ : key mapping files
+- lang/ : 	menu translations
+- **lsp/ : 	LSP client configurations**
+- **lua/ : 	|Lua| plugins**
+- menu.vim : GUI menus
+- pack/ : 	packages
+- parser/ : |treesitter| syntax parsers
+- **plugin/ : plugin scripts**
+- queries/ : |treesitter| queries
+- rplugin/ : |remote-plugin| scripts
+- spell/ : spell checking files
+- **syntax/ : syntax files**
+- tutor/ : tutorial files
+
+Bold lines denote folders I actively use.
 
 ## LSP
 
