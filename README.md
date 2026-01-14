@@ -13,40 +13,40 @@ Other features can be supplied through plugins, but I really strive to first mak
 - [empty so far]
 
 The features loaded by `vim` are loaded by default from those folders :
-- **(./ftdetect/) : filetype detection**
+- [ftdetect/ : filetype detection](ftdetect/README.md)
 - filetype.lua : filetypes
 - autoload/ : automatically loaded scripts
 - colors/ : color scheme files
 - compiler/ : compiler files
 - doc/ : 	documentation
-- **ftplugin/ : filetype plugins**
+- [ftplugin/ : filetype plugins](ftplugin/README.md)
 - indent/ : indent scripts
 - keymap/ : key mapping files
 - lang/ : 	menu translations
-- **lsp/ : 	LSP client configurations**
-- **lua/ : 	|Lua| plugins**
+- [lsp/ : 	LSP client configurations](lsp/README.md)
+- [lua/ : 	|Lua| plugins](#lua)
 - menu.vim : GUI menus
 - pack/ : 	packages
 - parser/ : |treesitter| syntax parsers
-- **plugin/ : plugin scripts**
+- [plugin/ : plugin scripts](#plugin)
 - queries/ : |treesitter| queries
 - rplugin/ : |remote-plugin| scripts
 - spell/ : spell checking files
-- **syntax/ : syntax files**
+- [syntax/ : syntax files](syntax/)
 - tutor/ : tutorial files
 
-Bold lines denote folders I actively use.
+The folders that are clickable are the ones actively used.
 
 ## LSP
 
 I will be using `nvim-lspconfig` to configure various `lsp`s. The config files will be stored in `lsp/` and sourced from `https://github.com/neovim/nvim-lspconfig.git/lsp/`, with a few tweaks :
-- they contain a built-in install script for the actual LSP
+- **TODO :** they contain a built-in install script for the actual LSP
 - they are automatically loaded on the correct filetype 
 
 ## `treesitter`
 
 The relevant files are stored in `queries/` and `parser/`. Using `treesitter` (on top of its integration with other plugins) yields the following benefits :
-- easy navigation using syntax-aware jumps (go out of function/class for instance)
-- syntax highlighting : use `syntax/`, the colouring works with `treesitter` queries, using notably `treesitter
+- easy navigation using [syntax-aware](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) jumps (go out of function/class for instance)
+- syntax highlighting : use `syntax/`, the colouring works with `treesitter` queries
 
 ## Completion
