@@ -1,6 +1,5 @@
 languages = {
 	-- logic
-	"agda",
 
 	-- general purpose
 	"python",
