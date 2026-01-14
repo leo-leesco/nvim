@@ -43,7 +43,7 @@ return {
 		{ "<leader>d",        ":CornelisTypeInfer<CR>",        ft = "agda" },
 		{ "<leader>;",        ":CornelisTypeContextInfer<CR>", ft = "agda" },
 		{ "<leader>s",        ":CornelisSolve<CR>",            ft = "agda" },
-		{ "<leader>m",        ":CornelisElaborate<CR>",        ft = "agda" },
+		{ "<leader>e",        ":CornelisElaborate<CR>",        ft = "agda" },
 		{ "gd",               ":CornelisGoToDefinition<CR>",   ft = "agda" },
 		{ "[d",               ":CornelisPrevGoal<CR>",         ft = "agda" },
 		{ "]d",               ":CornelisNextGoal<CR>",         ft = "agda" },
