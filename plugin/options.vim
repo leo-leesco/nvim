@@ -7,3 +7,5 @@ set showmatch " shows corresponding bracket
 set termguicolors
 
 set mouse=a
+
+set smartcase
