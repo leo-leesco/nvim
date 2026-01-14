@@ -13,7 +13,7 @@ Other features can be supplied through plugins, but I really strive to first mak
 - [empty so far]
 
 The features loaded by `vim` are loaded by default from those folders :
-- [ftdetect/ : filetype detection](ftdetect/README.md)
+- [ftdetect/ : filetype detection](ftdetect/)
 - filetype.lua : filetypes
 - autoload/ : automatically loaded scripts
 - colors/ : color scheme files
@@ -24,11 +24,11 @@ The features loaded by `vim` are loaded by default from those folders :
 - keymap/ : key mapping files
 - lang/ : 	menu translations
 - [lsp/ : 	LSP client configurations](lsp/README.md)
-- [lua/ : 	|Lua| plugins](#lua)
+- [lua/ : 	|Lua| plugins](lua/)
 - menu.vim : GUI menus
 - pack/ : 	packages
 - parser/ : |treesitter| syntax parsers
-- [plugin/ : plugin scripts](#plugin)
+- [plugin/ : plugin scripts](plugin/)
 - queries/ : |treesitter| queries
 - rplugin/ : |remote-plugin| scripts
 - spell/ : spell checking files
