@@ -1,5 +1,3 @@
-set digraph
-
 digraphs et 8743
 digraphs or 8744
 
