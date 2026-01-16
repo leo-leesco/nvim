@@ -9,4 +9,5 @@ set termguicolors
 
 set mouse=a
 
+set ignorecase
 set smartcase
