@@ -11,10 +11,13 @@ digraphs =\| 10980
 "≡
 digraphs eq 8801
 digraphs == 8801
-"
+
 "⟨ ⟩
 digraphs (( 10216
 digraphs )) 10217
+
+"∎
+digraphs ok 8718
 
 "⨃ ⊎ ⩀
 digraphs u. 10755
