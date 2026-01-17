@@ -15,7 +15,7 @@
 syntax match VimHideBS /\\/ conceal containedin=vimLineComment,vimString nextgroup=VimEscapedChar
 syntax match VimEscapedChar /./ contained
 
-highlight link VimEscapedChar Special " @markup.link is also another option in order to replicate the exact appearance of Vim |help| pages
+highlight link VimEscapedChar Keyword " Special " @markup.link is also another option in order to replicate the exact appearance of Vim |help| pages
 
 set conceallevel=2
 set concealcursor=nc
