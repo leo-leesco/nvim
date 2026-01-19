@@ -69,8 +69,9 @@
 ---
 
 local server = "lua-language-server"
-require"ensure_installed"(server, "brew install " .. server)
+require "ensure_installed" (server, "brew install " .. server)
 
+local uv = vim.uv
 ---@type vim.lsp.Config
 return {
 	cmd = { server },
@@ -93,7 +94,7 @@ return {
 			local path = client.workspace_folders[1].name
 			if
 					path ~= vim.fn.stdpath('config')
-					and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+					and (uv.fs_stat(path .. '/.luarc.json') or uv.fs_stat(path .. '/.luarc.jsonc'))
 			then
 				return
 			end
