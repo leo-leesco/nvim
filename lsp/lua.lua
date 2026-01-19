@@ -69,7 +69,7 @@
 ---
 
 local server = "lua-language-server"
-require("lspconfig.util").ensure_installed(server, "brew install " .. server)
+require"ensure_installed"(server, "brew install " .. server)
 
 ---@type vim.lsp.Config
 return {

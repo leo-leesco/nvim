@@ -94,12 +94,4 @@ function M.get_typescript_server_path(root_dir)
 	return ""
 end
 
-function M.ensure_installed(server, install_command)
-	if not vim.fn.executable(server) and vim.fn.confirm("Install " .. server .. " ?", "&Yes\n&No") then
-		vim.system(install_command, { text = true }, function(obj)
-			require("log")(obj)
-		end)
-	end
-end
-
 return M

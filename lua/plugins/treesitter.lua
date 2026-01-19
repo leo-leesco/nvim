@@ -52,15 +52,7 @@ return {
 
 	build = {
 		function()
-			vim.system({ "bun", "install", "-g", "tree-sitter-cli" }, { text = true }, function(obj)
-				vim.schedule(function()
-					if obj.code == 0 then
-						vim.notify("Output: " .. obj.stdout, vim.log.levels.INFO)
-					else
-						vim.notify("Error: " .. obj.stderr, vim.log.levels.ERROR)
-					end
-				end)
-			end)
+			require "ensure_installed" ("tree-sitter-cli", "bun install -g tree-sitter-cli")
 		end,
 		function()
 			require 'nvim-treesitter'.install(languages)
