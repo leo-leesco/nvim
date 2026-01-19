@@ -23,11 +23,11 @@ end
 ---
 --- Also works with zipfile:/tarfile: buffers (via `strip_archive_subpath`).
 function M.root_pattern(...)
-	local patterns = M.tbl_flatten({ ... })
+	local patterns = vim.iter({ ... }):flatten():totable()
 	return function(startpath)
 		startpath = M.strip_archive_subpath(startpath)
 		for _, pattern in ipairs(patterns) do
-			local match = M.search_ancestors(startpath, function(path)
+			local match = vim.iter(vim.fs.parents(startpath)):find(function(path)
 				for _, p in ipairs(vim.fn.glob(table.concat({ escape_wildcards(path), pattern }, "/"), true, true)) do
 					if vim.uv.fs_stat(p) then
 						return path
@@ -86,7 +86,7 @@ function M.get_typescript_server_path(root_dir)
 	local project_roots = vim.fs.find("node_modules", { path = root_dir, upward = true, limit = math.huge })
 	for _, project_root in ipairs(project_roots) do
 		local typescript_path = project_root .. "/typescript"
-		local stat = vim.loop.fs_stat(typescript_path)
+		local stat = vim.uv.fs_stat(typescript_path)
 		if stat and stat.type == "directory" then
 			return typescript_path .. "/lib"
 		end
