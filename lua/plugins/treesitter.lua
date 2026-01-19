@@ -1,4 +1,4 @@
-languages = {
+local languages = {
 	-- logic
 
 	-- general purpose
