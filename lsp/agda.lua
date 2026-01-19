@@ -4,30 +4,9 @@
 ---
 --- Language Server for Agda.
 
-local util = require 'lspconfig.util'
-
 ---@type vim.lsp.Config
 return {
 	cmd = { 'als' },
 	filetypes = { 'agda' },
-	root_dir = function(bufnr, on_dir)
-		local fname = vim.api.nvim_buf_get_name(bufnr)
-		on_dir(util.root_pattern('.git', '*.agda-lib')(fname))
-	end,
-
-	settings = {
-		commandLineOptions = {
-			"+AGDA",
-			"--cubical",
-			"-AGDA",
-		},
-	},
-
-	init_options = vim.empty_dict(),
-	on_init = function(client)
-		-- This forces the client to use an empty object for settings if none exist
-		if vim.tbl_isempty(client.config.settings) then
-			client.config.settings = vim.empty_dict()
-		end
-	end,
+	root_markers = { '.git' },
 }
