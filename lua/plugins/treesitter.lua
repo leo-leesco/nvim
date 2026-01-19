@@ -40,6 +40,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.wo.foldmethod = 'expr'
 		vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 		vim.cmd('normal! zR')
+		vim.wo.foldlevel = math.max(99, vim.wo.foldlevel)
 
 		vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 	end,
