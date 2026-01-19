@@ -130,9 +130,12 @@ local function buf_change_env(client, bufnr)
 	end)
 end
 
+local server = 'texlab'
+require("lspconfig.util").ensure_installed(server, "cargo install --git https://github.com/latex-lsp/texlab --locked")
+
 ---@type vim.lsp.Config
 return {
-	cmd = { 'texlab' },
+	cmd = { server },
 	filetypes = { 'tex', 'plaintex', 'bib' },
 	root_markers = { '.git', '.latexmkrc', 'latexmkrc', '.texlabroot', 'texlabroot', 'Tectonic.toml' },
 	settings = {

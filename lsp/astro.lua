@@ -9,9 +9,12 @@
 
 local util = require("lspconfig.util")
 
+local server = "astro-ls"
+util.ensure_installed(server, "bun install -g " .. server)
+
 ---@type vim.lsp.Config
 return {
-	cmd = { "astro-ls", "--stdio" },
+	cmd = { server, "--stdio" },
 	filetypes = { "astro" },
 	root_markers = {
 		"astro.config.mjs",

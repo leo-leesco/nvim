@@ -43,10 +43,13 @@
 --- It is recommended to use the same version of TypeScript in all packages, and therefore have it available in your workspace root. The location of the TypeScript binary will be determined automatically, but only once.
 ---
 
+local server = 'typescript-language-server'
+require "lspconfig.util".ensure_installed(server, "bun install -g " .. server)
+
 ---@type vim.lsp.Config
 return {
 	init_options = { hostInfo = 'neovim' },
-	cmd = { 'typescript-language-server', '--stdio' },
+	cmd = { server, '--stdio' },
 	filetypes = {
 		'javascript',
 		'javascriptreact',
