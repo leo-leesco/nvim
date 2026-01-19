@@ -25,6 +25,7 @@ vim.api.nvim_create_user_command(
 			vim.bo[buf].swapfile = false
 
 			vim.bo[buf].filetype = "help"
+			vim.wo.conceallevel = 0
 			vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 			vim.bo[buf].modifiable = false
 
