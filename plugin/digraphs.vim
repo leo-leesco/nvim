@@ -6,12 +6,18 @@ digraphs ex 8707
 digraphs in 8712
 digraphs ni 8713
 
-"∧ ∨
+"⊂ ⊃ ⊆ ⊇
+digraphs (c 8834
+digraphs )c 8835
+digraphs (= 8838
+digraphs )= 8839
+
+"∧ ∨ ¬
 digraphs et 8743
 digraphs or 8744
+digraphs no 172
 
-"∥ ⊢ ⊣ ⊨ ⫤ ⊥ ⊤
-digraphs \|\| 8741
+"⊢ ⊣ ⊨ ⫤ ⊥ ⊤
 digraphs \|- 8866
 digraphs -\| 8867
 digraphs \|= 8872
@@ -24,14 +30,23 @@ digraphs 'n 126
 digraphs n= 8871
 digraphs eq 8801
 
-"⟨ ⟩ ⟦ ⟧
+"⟨ ⟩ ⟦ ⟧ ∥
 digraphs (( 10216
 digraphs )) 10217
 digraphs [[ 10214
 digraphs ]] 10215
+digraphs \|\| 8741
 
-"∎
+"≺ ≻ ≼ ≽
+digraphs _< 8826
+digraphs _> 8827
+digraphs =< 8828
+digraphs => 8829
+
+"∎ ∙ ⋅
 digraphs ok 8718
+digraphs .. 8729
+digraphs ;; 8901
 
 "∩ ∪ ⊌ ⊍ ⩀
 digraphs uu 8746
@@ -48,10 +63,12 @@ digraphs bC 8450
 digraphs bK 120130
 digraphs bP 8473
 
-"ℓ
+"ℓ ħ
 digraphs ll 8467
+digraphs hh 295
 
-"∅
-digraphs \o 8709
+"∅ ∞
+digraphs \o 8709 "noconceal
+digraphs oo 8734
 
 " vim: ft=vim.concealescape
