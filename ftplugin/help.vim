@@ -1,1 +1,2 @@
 wincmd L
+set nowrapscan

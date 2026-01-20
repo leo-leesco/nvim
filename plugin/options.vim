@@ -11,7 +11,6 @@ set mouse=a
 
 set ignorecase
 set smartcase
-set nowrapscan
 
 set list
 set listchars=tab:→\ ,trail:∙,nbsp:⋅
