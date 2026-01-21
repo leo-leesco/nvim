@@ -19,7 +19,7 @@ return {
 			pattern = "background",
 			callback = function()
 				local bg = vim.o.background
-				vim.notify("Background changed to: " .. bg)
+				require "log" ("Background changed to: " .. bg)
 				if bg == "light" then
 					vim.cmd.colorscheme("dayfox")
 				else
