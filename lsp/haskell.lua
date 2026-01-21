@@ -16,12 +16,18 @@ local util = require 'lspconfig.util'
 
 local server = 'haskell-language-server'
 local executable = server .. '-wrapper'
-require "ensure_installed" (server, { "stack", "install", server })
+require "ensure_installed" (executable, { "ghcup install", server })
 
 ---@type vim.lsp.Config
 return {
 	cmd = { executable, '--lsp' },
-	filetypes = { 'haskell', 'lhaskell' },
+	filetypes = { 'haskell', 'lhaskell', 'cabal' },
+	-- root_markers = {
+	-- 	'hie.yaml',
+	-- 	'stack.yaml',
+	-- 	'cabal.project',
+	-- 	'package.yaml',
+	-- },
 	root_dir = function(bufnr, on_dir)
 		local fname = vim.api.nvim_buf_get_name(bufnr)
 		on_dir(util.root_pattern('hie.yaml', 'stack.yaml', 'cabal.project', '*.cabal', 'package.yaml')(fname))
