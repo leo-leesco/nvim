@@ -10,7 +10,7 @@
 local util = require("lspconfig.util")
 
 local server = "astro-ls"
-require"ensure_installed"(server, "bun install -g " .. server)
+require "ensure_installed" (server, "bun install -g " .. server)
 
 ---@type vim.lsp.Config
 return {
