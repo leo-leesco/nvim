@@ -131,7 +131,7 @@ local function buf_change_env(client, bufnr)
 end
 
 local server = 'texlab'
-require"ensure_installed"(server, "cargo install --git https://github.com/latex-lsp/texlab --locked")
+require "ensure_installed" (server, { "cargo", "install", "--git", "https://github.com/latex-lsp/texlab", "--locked" })
 
 ---@type vim.lsp.Config
 return {

@@ -44,7 +44,7 @@
 ---
 
 local server = 'typescript-language-server'
-require "ensure_installed" (server, "bun install -g " .. server)
+require "ensure_installed" (server, { "bun", "install", "-g", server })
 
 ---@type vim.lsp.Config
 return {

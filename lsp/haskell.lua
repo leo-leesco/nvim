@@ -16,7 +16,7 @@ local util = require 'lspconfig.util'
 
 local server = 'haskell-language-server'
 local executable = server .. '-wrapper'
-require "ensure_installed" (server, "brew install" .. server)
+require "ensure_installed" (server, { "stack", "install", server })
 
 ---@type vim.lsp.Config
 return {
