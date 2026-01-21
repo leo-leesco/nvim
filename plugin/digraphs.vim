@@ -26,10 +26,11 @@ digraphs =\| 10980
 digraphs -t 8869
 digraphs tt 8868
 
-"~ ≃ ≡
+"~ ≃ ≡ ≜
 digraphs 'n 126
-digraphs n= 8871
-digraphs eq 8801
+digraphs =n 8871
+digraphs =e 8801
+digraphs =d 8796
 
 "⟨ ⟩ ⟦ ⟧ ∥
 digraphs (( 10216
