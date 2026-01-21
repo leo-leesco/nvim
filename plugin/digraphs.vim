@@ -16,7 +16,7 @@ digraphs )= 8839
 digraphs et 8743
 digraphs or 8744
 digraphs no 172
-digraphs xx 215 
+digraphs xx 215
 
 "⊢ ⊣ ⊨ ⫤ ⊥ ⊤
 digraphs \|- 8866
