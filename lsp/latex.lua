@@ -141,6 +141,12 @@ return {
 	settings = {
 		texlab = {
 			rootDirectory = nil,
+			diagnostics = {
+				ignoredPatterns = {
+					'Underfull',
+					'Overfull',
+				},
+			},
 			build = {
 				executable = 'latexmk',
 				args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '%f' },

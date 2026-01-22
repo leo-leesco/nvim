@@ -16,7 +16,7 @@ return {
 		f:write([[nvim --headless -c "VimtexInverseSearch $1 '$2'"]])
 		f:close()
 
-		os.execute("chmod +x" .. othereditor)
+		os.execute("chmod +x " .. othereditor)
 	end,
 	init = function()
 		vim.g.vimtex_view_method = "texshop"
