@@ -1,5 +1,5 @@
 return {
-	"leo-leesco/vimtex",
+	"lervag/vimtex",
 	lazy = false,
 	build = function()
 		-- prevent TeXShop from reaching the foreground on save
