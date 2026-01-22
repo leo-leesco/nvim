@@ -28,7 +28,7 @@ digraphs tt 8868
 
 "~ ≃ ≡ ≜
 digraphs 'n 126
-digraphs =n 8871
+digraphs =n 8771
 digraphs =e 8801
 digraphs =d 8796
 
@@ -45,8 +45,9 @@ digraphs _> 8827
 digraphs =< 8828
 digraphs => 8829
 
-"∎ ∙ ⋅
+"∎ ■ ∙ ⋅
 digraphs ok 8718
+digraphs OK 9632
 digraphs .. 8729
 digraphs ;; 8901
 
