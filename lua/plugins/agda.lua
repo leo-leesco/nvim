@@ -1,5 +1,5 @@
 return {
-	'isovector/cornelis',
+	'leo-leesco/cornelis',
 	name = 'cornelis',
 	ft = 'agda',
 	build = 'stack install',
@@ -19,7 +19,7 @@ return {
 			end
 		}
 	},
-	version = '*',
+	branch = "parenthesize",
 
 	config = function()
 		vim.cmd [[

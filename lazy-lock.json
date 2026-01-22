@@ -1,5 +1,5 @@
 {
-  "cornelis": { "branch": "master", "commit": "deda7eb399efe94cc49c645da7b6f94780fe0c19" },
+  "cornelis": { "branch": "parenthesize", "commit": "4f24bf5e27312dfb59e228ef9b235caea3f01361" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "nightfox.nvim": { "branch": "main", "commit": "ba47d4b4c5ec308718641ba7402c143836f35aa9" },
   "nvim-hs.vim": { "branch": "develop", "commit": "d4a6b7278ae6a1fdc64e300c3ebc1e24719af342" },
