@@ -53,7 +53,8 @@ return {
 
 	build = {
 		function()
-			require "ensure_installed" ("tree-sitter-cli", "bun install -g tree-sitter-cli")
+			local executable = "tree-sitter-cli"
+			require "ensure_installed" (executable, { "bun install -g", executable })
 		end,
 		function()
 			require 'nvim-treesitter'.install(languages)
