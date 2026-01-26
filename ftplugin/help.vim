@@ -1,4 +1,6 @@
-if winwidth(0) > &textwidth * (winnr('$') + 1)
+if winwidth(0) < &textwidth * (winnr('$') + 1)
 	wincmd L
+else
+	wincmd J
 endif
 set nowrapscan
