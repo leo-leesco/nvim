@@ -1,4 +1,4 @@
-let &suffixesadd .= '.agda'
+setlocal suffixesadd+=.agda
 
 iabbrev === ≡
 iabbrev def ≜
