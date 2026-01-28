@@ -33,3 +33,6 @@ When using `root_markers`, specify exactly the files or folders to look for, **w
 
 Otherwise use `root_dir` and a appropriate function that returns the path to `root_dir`.
 
+## TODO
+
+- [ ] track lsp configs from <https://github.com/neovim/nvim-lspconfig.git>
