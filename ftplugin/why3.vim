@@ -14,4 +14,29 @@ endfunction
 " comments
 setlocal comments=sr:(**,mb:\ *,ex:\ *),sr:(*\ ,mb:\ ,ex:*)
 
+" documentation
+function! s:Why3DocFunc(keyword)
+	let l:basename = expand('%:t:r')
+
+	let l:out_dir = '/tmp/why3'
+	call mkdir(l:out_dir, 'p')
+
+	let l:cmd = 'why3 doc -o ' . l:out_dir . ' ' . shellescape(expand('%'))
+	call system(l:cmd)
+
+	let l:target_html = l:out_dir . '/'.l:basename . '.html'
+
+	if has('macunix')
+		call system('open ' . shellescape(l:target_html))
+	elseif has('unix')
+		call system('xdg-open ' . shellescape(l:target_html))
+	else
+		echo "Don't know how to open browser on this system."
+	endif
+endfunction
+
+" -nargs=1 allows it to accept the keyword passed by K
+command! -nargs=1 Why3Doc call s:Why3DocFunc(<f-args>)
+
+setlocal keywordprg=:Why3Doc
 " vim: ft=vim.concealescape
