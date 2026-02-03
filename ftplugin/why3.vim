@@ -10,3 +10,8 @@ function s:FixColumnOffset()
 		endfor
 	call setqflist(l:list, 'r')
 endfunction
+
+" comments
+setlocal comments=sr:(**,mb:\ *,ex:\ *),sr:(*\ ,mb:\ ,ex:*)
+
+" vim: ft=vim.concealescape
