@@ -1,5 +1,8 @@
 setlocal makeprg=why3\ prove\ %
 setlocal errorformat=Warning\\,\ file\ \"%f\"\\,\ line\ %l\\,\ characters\ %c-%k:\ %m
+setlocal errorformat+=File\ \"%f\"\\,\ line\ %l\\,\ characters\ %c-%k:\ %m
+setlocal errorformat+=%EFile\ \"%f\"\\,\ line\ %l\\,\ characters\ %c-%k:
+setlocal errorformat+=%Z%m
 
 au QuickFixCmdPost make call setqflist(filter(getqflist(), 'v:val.valid == 1'),'r') "clean up invalid error lines from the qflist
 au QuickFixCmdPost make call s:FixColumnOffset()
