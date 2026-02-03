@@ -11,7 +11,8 @@ return function(executable, install_command)
 
 			{ text = true }, function(obj)
 				vim.schedule(function()
-					require("log")(obj)
+					vim.notify((obj.code == 0 and "Successfully installed " or "Failed to install ") .. executable)
+					require "log" (obj)
 				end)
 			end)
 	end
