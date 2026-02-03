@@ -10,7 +10,10 @@
 --- ```
 
 local server = 'ocamllsp'
-require "ensure_installed" (server, { "opam install ocaml-lsp-server" })
+require "ensure_installed" (server, { "opam install", "ocaml-lsp-server", "-y" })
+
+local formatter = "ocamlformat"
+require "ensure_installed" (formatter, { "opam install", formatter, "-y" })
 
 -- https://github.com/ocaml/ocaml-lsp/blob/master/ocaml-lsp-server/docs/ocamllsp/switchImplIntf-spec.md
 local function switch_impl_intf(bufnr, client)
