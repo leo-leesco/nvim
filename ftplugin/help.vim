@@ -4,4 +4,4 @@ else
 	wincmd J
 endif
 
-set nowrapscan
+setlocal nowrapscan
