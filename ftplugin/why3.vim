@@ -40,4 +40,10 @@ endfunction
 command! -nargs=1 Why3Doc call s:Why3DocFunc(<f-args>)
 
 setlocal keywordprg=:Why3Doc
+
+" matchit
+packadd! matchit
+let b:match_words='\<\%(match\|module\)\>:[|]:\<end\>'
+let b:match_words.=',\<if\>:\<then\>:\<else\>'
+
 " vim: ft=vim.concealescape
