@@ -1,12 +1,12 @@
-" makeprg + errorformat
+" makeprg + errorformat {{{
 setlocal makeprg=why3\ prove\ -L\ .\ %
 setlocal errorformat=Warning\\,\ file\ \"%f\"\\,\ line\ %l\\,\ characters\ %c-%k:\ %m
 setlocal errorformat+=File\ \"%f\"\\,\ line\ %l\\,\ characters\ %c-%k:\ %m
 setlocal errorformat+=%EFile\ \"%f\"\\,\ line\ %l\\,\ characters\ %c-%k:
 setlocal errorformat+=%Z%m
 
-au QuickFixCmdPost make call setqflist(filter(getqflist(), 'v:val.valid == 1'),'r') "clean up invalid error lines from the qflist
 au QuickFixCmdPost make call s:FixColumnOffset()
+au QuickFixCmdPost make call setqflist(filter(getqflist(), 'v:val.valid == 1'),'r') "clean up invalid error lines from the qflist
 function s:FixColumnOffset()
 	let l:list = getqflist()
 	for l:item in l:list
@@ -15,11 +15,13 @@ function s:FixColumnOffset()
 	call setqflist(l:list, 'r')
 endfunction
 
-" comments
+"}}}
+" comments {{{
 setlocal comments=sr:(**,mb:\ *,ex:\ *),sr:(*\ ,mb:\ ,ex:*)
 setlocal commentstring=(*\ %s\ *)
 
-" documentation
+"}}}
+" documentation {{{
 function! s:Why3DocFunc(_keyword)
 	let l:raw_word = expand('<cWORD>')
 	let l:clean_word = substitute(l:raw_word, "^['(\[\{]*\\|['(\[\{,.)]*$", "", "g")
@@ -41,9 +43,16 @@ command! -nargs=1 Why3Doc call s:Why3DocFunc(<f-args>)
 
 setlocal keywordprg=:Why3Doc
 
-" matchit
+"}}}
+" matchit {{{
 packadd! matchit
 let b:match_words='\<\%(match\|module\)\>:[|]:\<end\>'
 let b:match_words.=',\<if\>:\<then\>:\<else\>'
 
-" vim: ft=vim.concealescape
+"}}}
+" gf {{{
+let &includeexpr="substitute(v:fname, '\\.[A-Z].*', '', '')"
+let &suffixesadd = '.mlw'
+"}}}
+
+" vim: ft=vim.concealescape:foldmethod=marker
