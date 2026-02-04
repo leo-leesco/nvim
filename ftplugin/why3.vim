@@ -1,5 +1,5 @@
 " makeprg + errorformat
-setlocal makeprg=why3\ prove\ %
+setlocal makeprg=why3\ prove\ -L\ .\ %
 setlocal errorformat=Warning\\,\ file\ \"%f\"\\,\ line\ %l\\,\ characters\ %c-%k:\ %m
 setlocal errorformat+=File\ \"%f\"\\,\ line\ %l\\,\ characters\ %c-%k:\ %m
 setlocal errorformat+=%EFile\ \"%f\"\\,\ line\ %l\\,\ characters\ %c-%k:
