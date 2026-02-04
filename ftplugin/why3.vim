@@ -25,11 +25,12 @@ function! s:Why3DocFunc(_keyword)
 	let l:clean_word = substitute(l:raw_word, "^['(\[\{]*\\|['(\[\{,.)]*$", "", "g")
 	let l:root_module = split(l:clean_word, '\.')[0]
 	let l:target = shellescape('https://www.why3.org/stdlib/'. l:root_module .'.html')
+	echo l:target
 
 	if has('macunix')
-		call system('open ' . shellescape(l:target))
+		call system('open ' . l:target)
 	elseif has('unix')
-		call system('xdg-open ' . shellescape(l:target))
+		call system('xdg-open ' . l:target)
 	else
 		echo "Don't know how to open browser on this system."
 	endif
