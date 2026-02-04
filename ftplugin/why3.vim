@@ -18,4 +18,24 @@ endfunction
 setlocal comments=sr:(**,mb:\ *,ex:\ *),sr:(*\ ,mb:\ ,ex:*)
 setlocal commentstring=(*\ %s\ *)
 
+" documentation
+function! s:Why3DocFunc(_keyword)
+	let l:raw_word = expand('<cWORD>')
+	let l:clean_word = substitute(l:raw_word, "^['(\[\{]*\\|['(\[\{,.)]*$", "", "g")
+	let l:root_module = split(l:clean_word, '\.')[0]
+	let l:target = shellescape('https://www.why3.org/stdlib/'. l:root_module .'.html')
+
+	if has('macunix')
+		call system('open ' . shellescape(l:target))
+	elseif has('unix')
+		call system('xdg-open ' . shellescape(l:target))
+	else
+		echo "Don't know how to open browser on this system."
+	endif
+endfunction
+
+" -nargs=1 allows it to accept the keyword passed by K
+command! -nargs=1 Why3Doc call s:Why3DocFunc(<f-args>)
+
+setlocal keywordprg=:Why3Doc
 " vim: ft=vim.concealescape
