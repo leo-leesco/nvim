@@ -1,3 +1,4 @@
+" makeprg + errorformat
 setlocal makeprg=why3\ prove\ %
 setlocal errorformat=Warning\\,\ file\ \"%f\"\\,\ line\ %l\\,\ characters\ %c-%k:\ %m
 setlocal errorformat+=File\ \"%f\"\\,\ line\ %l\\,\ characters\ %c-%k:\ %m
