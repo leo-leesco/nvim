@@ -4,4 +4,9 @@ else
 	wincmd J
 endif
 
-setlocal nowrapscan
+augroup HelpWrapScan
+  autocmd! * <buffer>
+  autocmd BufEnter,WinEnter <buffer> set nowrapscan
+
+  autocmd BufLeave,WinLeave <buffer> set wrapscan
+augroup END
