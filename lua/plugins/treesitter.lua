@@ -32,20 +32,6 @@ local languages = {
 	"fish",
 }
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = languages,
-	callback = function(args)
-		vim.treesitter.start()
-
-		vim.wo.foldmethod = 'expr'
-		vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-		vim.cmd('normal! zR')
-		vim.wo.foldlevel = math.max(99, vim.wo.foldlevel)
-
-		vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-	end,
-})
-
 return {
 	"nvim-treesitter/nvim-treesitter",
 	lazy = false,
@@ -57,7 +43,7 @@ return {
 			require "ensure_installed" (executable, { "bun install -g", executable })
 		end,
 		function()
-			require 'nvim-treesitter'.install(languages)
+			require 'nvim-treesitter'.install(languages, { summary = true }):wait(5000)
 		end,
 		":TSUpdate",
 	},
@@ -70,4 +56,22 @@ return {
 			enable = true,
 		},
 	},
+
+	setup = function(opts)
+		require("nvim-treesitter").setup(opts)
+
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = languages,
+			callback = function(args)
+				vim.treesitter.start()
+
+				vim.wo.foldmethod = 'expr'
+				vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+				vim.cmd('normal! zR')
+				vim.wo.foldlevel = math.max(99, vim.wo.foldlevel)
+
+				vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+			end,
+		})
+	end
 }
