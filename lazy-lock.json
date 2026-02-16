@@ -1,14 +1,14 @@
 {
-  "blink.cmp": { "branch": "main", "commit": "694b768d8531bee24a0a364ece300967e7e2cf9d" },
+  "blink.cmp": { "branch": "main", "commit": "cd79f572971c58784ca72551af29af3a63da9168" },
   "cornelis": { "branch": "parenthesize", "commit": "c36b655754ef4bd4f4ffc29702f67406cb29328c" },
   "friendly-snippets": { "branch": "main", "commit": "6cd7280adead7f586db6fccbd15d2cac7e2188b9" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "nightfox.nvim": { "branch": "main", "commit": "ba47d4b4c5ec308718641ba7402c143836f35aa9" },
   "nvim-hs.vim": { "branch": "develop", "commit": "d4a6b7278ae6a1fdc64e300c3ebc1e24719af342" },
-  "nvim-treesitter": { "branch": "main", "commit": "9f2dad22ef8bb14fd1e0a3aa8859cdc88170668b" },
+  "nvim-treesitter": { "branch": "main", "commit": "4d9466677a5ceadef104eaa0fe08d60d91c4e9a7" },
   "nvim-treesitter-textobjects": { "branch": "main", "commit": "a0e182ae21fda68c59d1f36c9ed45600aef50311" },
   "trouble.nvim": { "branch": "main", "commit": "bd67efe408d4816e25e8491cc5ad4088e708a69a" },
   "vim-easy-align": { "branch": "master", "commit": "9815a55dbcd817784458df7a18acacc6f82b1241" },
   "vim-textobj-user": { "branch": "master", "commit": "41a675ddbeefd6a93664a4dc52f302fe3086a933" },
-  "vimtex": { "branch": "master", "commit": "f707368022cdb851716be0d2970b90599c84a6a6" }
+  "vimtex": { "branch": "master", "commit": "95b93a24740f7b89dd8331326b41bdd1337d79f6" }
 }
