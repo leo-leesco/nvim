@@ -1,10 +1,13 @@
-require "ensure_installed" ("stack", { "curl --proto '=https' --tlsv1.2 -sSf", "https://get-ghcup.haskell.org", "| sh" })
-
 return {
 	'leo-leesco/cornelis',
 	name = 'cornelis',
 	ft = 'agda',
-	build = 'stack install',
+	build = {
+		function()
+			require "ensure_installed" ("stack",
+				{ "curl --proto '=https' --tlsv1.2 -sSf", "https://get-ghcup.haskell.org", "| sh" })
+		end,
+		'stack install' },
 	dependencies = {
 		'neovimhaskell/nvim-hs.vim',
 		'kana/vim-textobj-user',
