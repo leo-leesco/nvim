@@ -14,6 +14,9 @@ require "ensure_installed" ("bun", { "brew tap oven-sh/bun", "brew install bun" 
 local server = "astro-ls"
 require "ensure_installed" (server, { "bun install", "-g", server })
 
+local formatter = "prettier"
+require "ensure_installed" (formatter, { "bun install", "-g", formatter })
+
 ---@type vim.lsp.Config
 return {
 	cmd = { server, "--stdio" },
