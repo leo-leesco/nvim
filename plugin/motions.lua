@@ -1,7 +1,7 @@
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "*",
 	callback = function()
-		local escaped_commentstring = vim.fn.escape(vim.bo.commentstring:gsub("%%s", ""):gsub("%s+$", ""), "\\\\/*^$.~[]")
+		local escaped_commentstring = "\\V" .. vim.bo.commentstring:gsub("%%s", ""):gsub("%s+$", "") .. "\\v"
 
 		vim.keymap.set({ "n", "v" }, "}", function()
 			vim.cmd.normal { bang = true, "0" }
