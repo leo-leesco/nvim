@@ -9,6 +9,8 @@
 
 local util = require("lspconfig.util")
 
+require "ensure_installed" ("bun", { "brew tap oven-sh/bun", "brew install bun" })
+
 local server = "astro-ls"
 require "ensure_installed" (server, { "bun install", "-g", server })
 
