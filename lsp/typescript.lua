@@ -46,12 +46,12 @@
 require "ensure_installed" ("bun", { "brew tap oven-sh/bun", "brew install bun" })
 
 local server = 'typescript-language-server'
-require "ensure_installed" (server, { "bun install", "-g", server })
+require "ensure_installed" (server, { "bun install", "-g", server, "typescript" })
 
 ---@type vim.lsp.Config
 return {
 	init_options = { hostInfo = 'neovim' },
-	cmd = { server, '--stdio' },
+	cmd = { "bunx", server, '--stdio' },
 	filetypes = {
 		'javascript',
 		'javascriptreact',
