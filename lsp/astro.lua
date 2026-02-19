@@ -19,7 +19,7 @@ require "ensure_installed" (formatter, { "bun install", "-g", formatter })
 
 ---@type vim.lsp.Config
 return {
-	cmd = { server, "--stdio" },
+	cmd = { "bunx", server, "--stdio" },
 	filetypes = { "astro" },
 	root_markers = {
 		"astro.config.mjs",
