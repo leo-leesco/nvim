@@ -9,6 +9,8 @@
 --- opam install ocaml-lsp-server
 --- ```
 
+require "ensure_installed" ("opam", { 'bash -c "sh <(curl -fsSL https://opam.ocaml.org/install.sh)" ' })
+
 local server = 'ocamllsp'
 require "ensure_installed" (server, { "opam install", "ocaml-lsp-server", "-y" })
 
