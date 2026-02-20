@@ -50,6 +50,7 @@ return {
 		{ "<leader>h",        ":CornelisHelperFunc<CR>",                      ft = "agda" },
 		{ "<leader>s",        ":CornelisSolve<CR>",                           ft = "agda" },
 		{ "<leader>e",        ":CornelisElaborate<CR>",                       ft = "agda" },
+		{ "<leader>n",        ":CornelisNormalize<CR>",                       ft = "agda" },
 		{ "gd",               ":CornelisGoToDefinition<CR>",                  ft = "agda" },
 		{ "[d",               ":CornelisPrevGoal<CR>",                        ft = "agda" },
 		{ "]d",               ":CornelisNextGoal<CR>",                        ft = "agda" },
