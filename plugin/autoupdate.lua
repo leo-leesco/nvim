@@ -10,13 +10,7 @@ local function git_commit_and_push()
 				}
 
 				vim.system(cmds, {
-					on_exit = function(_, code)
-						if code == 0 then
-							vim.notify("Plugins updated and pushed to remote!", vim.log.levels.INFO)
-						else
-							vim.notify("Auto-push failed. Check git output.", vim.log.levels.ERROR)
-						end
-					end
+					on_exit = require("log")
 				})
 			else
 			end
