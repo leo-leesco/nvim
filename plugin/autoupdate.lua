@@ -1,23 +1,15 @@
 local function git_commit_and_push()
-	-- 1. check if lazy-lock.json actually changed
-	--    'git diff --quiet' returns 1 if there are changes
-	local check_changes = "git diff --quiet lazy-lock.json"
-
-	vim.fn.jobstart(check_changes, {
+	vim.fn.jobstart("git diff --quiet lazy-lock.json", {
 		on_exit = function(_, return_val)
 			if return_val == 1 then
 				-- 2. Changes detected! Commit and Push.
 				local cmds = {
 					"git add lazy-lock.json",
-					"git commit -m 'chore(lazy): auto-update plugins [skip ci]'",
+					"git commit -m 'chore(lazy): auto-update plugins'",
 					"git push"
 				}
 
-				-- Run them sequentially
-				-- (Using a simple loop for brevity; for production, chain them via callbacks)
-				local chain = table.concat(cmds, " && ")
-
-				vim.fn.jobstart(chain, {
+				vim.system(cmds, {
 					on_exit = function(_, code)
 						if code == 0 then
 							vim.notify("Plugins updated and pushed to remote!", vim.log.levels.INFO)
@@ -27,15 +19,15 @@ local function git_commit_and_push()
 					end
 				})
 			else
-				-- No changes to lockfile, do nothing.
 			end
 		end
 	})
 end
 
--- === 1. Auto-Update on Startup ===
+local autoupdate = vim.api.nvim_create_augroup("LazyAutoUpdate", { clear = true })
+--
 vim.api.nvim_create_autocmd("VimEnter", {
-	group = vim.api.nvim_create_augroup("LazyAutoUpdate", { clear = true }),
+	group = autoupdate,
 	callback = function()
 		-- Run check() immediately on startup.
 		-- wait = false: Don't block the UI
@@ -44,8 +36,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	end,
 })
 
--- === 2. Listen for 'LazyCheck' to Push ===
 vim.api.nvim_create_autocmd("User", {
+	group = autoupdate,
 	pattern = "LazyCheck",
 	callback = git_commit_and_push,
 })
