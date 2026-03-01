@@ -17,3 +17,5 @@ if #found > 0 then
 else
 	vim.bo.makeprg = "ocamlopt % -o %:r"
 end
+
+vim.opt_local.suffixesadd:append { ".ml" }
