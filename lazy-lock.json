@@ -2,6 +2,7 @@
   "blink.cmp": { "branch": "main", "commit": "1912be2ca1f7fc98ae5b2b12fad49525f3b366ec" },
   "cornelis": { "branch": "parenthesize", "commit": "c36b655754ef4bd4f4ffc29702f67406cb29328c" },
   "friendly-snippets": { "branch": "main", "commit": "6cd7280adead7f586db6fccbd15d2cac7e2188b9" },
+  "gx.nvim": { "branch": "main", "commit": "ba9c408fc0130fc4548760c3933a81b58fc50de8" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "nightfox.nvim": { "branch": "main", "commit": "ba47d4b4c5ec308718641ba7402c143836f35aa9" },
   "nvim-hs.vim": { "branch": "develop", "commit": "d4a6b7278ae6a1fdc64e300c3ebc1e24719af342" },
