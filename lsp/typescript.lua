@@ -54,7 +54,7 @@ require "ensure_installed" (formatter, { "bun install", "-g", formatter })
 ---@type vim.lsp.Config
 return {
 	init_options = { hostInfo = 'neovim' },
-	cmd = { "bunx", server, '--stdio' },
+	cmd = { server, '--stdio' },
 	filetypes = {
 		'javascript',
 		'javascriptreact',

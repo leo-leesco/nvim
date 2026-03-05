@@ -66,7 +66,7 @@ require("ensure_installed")(server, { "bun install", "-g", server })
 
 ---@type vim.lsp.Config
 return {
-	cmd = { "bunx", server, '--stdio' },
+	cmd = { server, '--stdio' },
 	filetypes = { 'yaml', 'yaml.docker-compose', 'yaml.gitlab', 'yaml.helm-values' },
 	root_markers = { '.git' },
 	settings = {
