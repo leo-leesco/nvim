@@ -43,11 +43,13 @@ digraphs [[ 10214
 digraphs ]] 10215
 digraphs \|\| 8741
 
-"≺ ≻ ≼ ≽
+"≺ ≻ ≼ ≽ <= >=
 digraphs _< 8826
 digraphs >_ 8827
 digraphs =< 8828
 digraphs >= 8829
+digraphs lt 8804
+digraphs ge 8805
 
 "∎ ■ ∙ ⋅
 digraphs ok 8718
