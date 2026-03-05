@@ -55,12 +55,14 @@ digraphs OK 9632
 digraphs .. 8729
 digraphs ;; 8901
 
-"∩ ∪ ⊌ ⊍ ⩀
+"∩ ∪ ⊌ ⊍ ⩀ ⊔ ⊓
 digraphs uu 8746
 digraphs nn 8745
 digraphs u. 8845
 digraphs u+ 8846
 digraphs n. 10816
+digraphs u_ 8852
+digraphs n_ 8851
 
 "ℕ ℤ ℝ ℂ 𝕂 ℙ
 digraphs bN 8469
