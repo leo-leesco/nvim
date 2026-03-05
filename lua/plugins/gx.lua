@@ -30,17 +30,6 @@ return {
 			brewfile = false, -- open Homebrew formulaes and casks
 			search = false, -- search the web/selection on the web if nothing else is found
 			go = false,    -- open pkg.go.dev from an import statement (uses treesitter)
-
-			-- jira = { -- custom handler to open Jira tickets (these have higher precedence than builtin handlers)
-			--   name = "jira", -- set name of handler
-			--   handle = function(mode, line, _)
-			--     local ticket = require("gx.helper").find(line, mode, "(%u+-%d+)")
-			--     if ticket and #ticket < 20 then
-			--       return "http://jira.company.com/browse/" .. ticket
-			--     end
-			--   end,
-			-- },
-
 		},
 	}
 }
