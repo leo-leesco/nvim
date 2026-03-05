@@ -9,18 +9,15 @@
 "
 " this syntax group is concealed
 "
+" Match a backslash ONLY IF the word 'noconceal' does NOT appear later on the line.
+" \@! is Vim's negative lookahead. It looks ahead for '.*noconceal', and if it finds it, the match fails.
 " nextgroup and contained work together to ensure that VimHideEscape is followed
 " by VimEscapedChar, and VimEscapedChar is triggered only when called as a
 " nextgroup from another syntax group
-syntax match VimHideEscape /\\/ conceal containedin=vimLineComment,vimString nextgroup=VimEscapedChar
+syntax match VimHideEscape /\\\(.*noconceal\)\@!/ conceal containedin=Comment,String nextgroup=VimEscapedChar
 syntax match VimEscapedChar /./ contained
 
-" disables concealing per line
-" simply add a comment 'noconceal' somewhere on the line
-syntax match VimNoConceal /^.*noconceal.*$/ transparent contains=VimRevealEscape containedin=vimLineComment
-syntax match VimRevealEscape /\\/ contained containedin=vimLineComment,vimString "reverts the concealing mechanism if disabled on the given line
-
-highlight link VimEscapedChar Keyword " Special " @markup.link is also another option in order to replicate the exact appearance of Vim |help| pages
+highlight link VimEscapedChar Keyword | " Special / @markup.link is also another option in order to replicate the exact appearance of Vim |help| pages
 
 set conceallevel=2
 set concealcursor=nc
