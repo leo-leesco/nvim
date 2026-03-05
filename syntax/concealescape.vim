@@ -17,7 +17,7 @@ syntax match VimEscapedChar /./ contained
 
 " disables concealing per line
 " simply add a comment 'noconceal' somewhere on the line
-syntax match VimNoConceal /^.*noconceal.*$/ transparent contains=VimRevealEscape containedin=vimComment
+syntax match VimNoConceal /^.*noconceal.*$/ transparent contains=VimRevealEscape containedin=vimLineComment
 syntax match VimRevealEscape /\\/ contained containedin=vimLineComment,vimString "reverts the concealing mechanism if disabled on the given line
 
 highlight link VimEscapedChar Keyword " Special " @markup.link is also another option in order to replicate the exact appearance of Vim |help| pages
