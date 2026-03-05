@@ -1,18 +1,44 @@
 local function git_commit_and_push()
 	vim.fn.jobstart("git diff --quiet lazy-lock.json", {
+		cwd = vim.fn.stdpath('config'),
 		on_exit = function(_, return_val)
 			if return_val == 1 then
-				-- 2. Changes detected! Commit and Push.
 				local cmds = {
-					"git add lazy-lock.json",
-					"git commit -m 'chore(lazy): auto-update plugins'",
-					"git push"
+					{ "git", "add",    "lazy-lock.json" },
+					{ "git", "commit", "-m",            "chore(lazy): auto-update plugins" },
+					{ "git", "push" }
 				}
 
-				vim.system(cmds, {
-					on_exit = require("log")
-				})
-			else
+				local function async_git_calls()
+					local co = coroutine.create(function()
+						for cmd in vim.iter(cmds) do
+							local current_thread = coroutine.running()
+
+							vim.system(cmd, {
+									cwd = vim.fn.stdpath('config'),
+									text = true
+								},
+								function(obj)
+									vim.schedule(function()
+										coroutine.resume(current_thread, obj)
+									end)
+								end)
+
+							local result = coroutine.yield() -- pauses here
+
+							require("log")(result)
+							if result.code ~= 0 then
+								vim.notify("Git sequence aborted at: " .. cmd[2], vim.log.levels.ERROR)
+								return
+							end
+						end
+					end)
+
+					-- fire the first corountine call
+					coroutine.resume(co)
+				end
+
+				async_git_calls()
 			end
 		end
 	})
@@ -26,12 +52,12 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		-- Run check() immediately on startup.
 		-- wait = false: Don't block the UI
 		-- show = false: Don't pop up the Lazy window unless there are errors
-		require("lazy").check({ wait = false, show = false })
+		require("lazy").sync({ wait = false, show = false })
 	end,
 })
 
 vim.api.nvim_create_autocmd("User", {
 	group = autoupdate,
-	pattern = "LazyCheck",
+	pattern = "LazySync",
 	callback = git_commit_and_push,
 })
