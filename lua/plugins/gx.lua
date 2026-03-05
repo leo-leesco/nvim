@@ -1,31 +1,18 @@
 return {
 	"chrishrb/gx.nvim",
 	keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
-	-- cmd = { "Browse" },
+	cmd = { "Browse" },
 	init = function()
 		vim.g.netrw_nogx = 1 -- disable netrw gx
 	end,
 
 	opts = {
-		select_prompt = true, -- shows a prompt when multiple handlers match; disable to auto-select the top one
+		select_prompt = false, -- shows a prompt when multiple handlers match; disable to auto-select the top one
 
 		handlers = {
-			plugin = true,    -- open plugin links in lua (e.g. packer, lazy, ..)
-			github = true,    -- open github issues
-			brewfile = false, -- open Homebrew formulaes and casks
-			package_json = true, -- open dependencies from package.json
-			search = false,   -- search the web/selection on the web if nothing else is found
-			go = false,       -- open pkg.go.dev from an import statement (uses treesitter)
-
-			-- jira = { -- custom handler to open Jira tickets (these have higher precedence than builtin handlers)
-			--   name = "jira", -- set name of handler
-			--   handle = function(mode, line, _)
-			--     local ticket = require("gx.helper").find(line, mode, "(%u+-%d+)")
-			--     if ticket and #ticket < 20 then
-			--       return "http://jira.company.com/browse/" .. ticket
-			--     end
-			--   end,
-			-- },
+			plugin = true,         -- open plugin links in lua (e.g. packer, lazy, ..)
+			github = true,         -- open github issues
+			package_json = true,   -- open dependencies from package.json
 
 			rust = {               -- custom handler to open rust's cargo packages
 				name = "rust",       -- set name of handler
@@ -39,6 +26,21 @@ return {
 					end
 				end,
 			},
+
+			brewfile = false, -- open Homebrew formulaes and casks
+			search = false, -- search the web/selection on the web if nothing else is found
+			go = false,    -- open pkg.go.dev from an import statement (uses treesitter)
+
+			-- jira = { -- custom handler to open Jira tickets (these have higher precedence than builtin handlers)
+			--   name = "jira", -- set name of handler
+			--   handle = function(mode, line, _)
+			--     local ticket = require("gx.helper").find(line, mode, "(%u+-%d+)")
+			--     if ticket and #ticket < 20 then
+			--       return "http://jira.company.com/browse/" .. ticket
+			--     end
+			--   end,
+			-- },
+
 		},
 	}
 }
