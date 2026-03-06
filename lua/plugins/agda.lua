@@ -34,6 +34,7 @@ return {
 
 		let g:cornelis_split_location = 'bottom'
 		]]
+		vim.g.cornelis_max_size = math.floor(vim.api.nvim_win_get_height(0) / 3)
 
 		vim.o.expandtab = true
 		vim.o.tabstop = 1
