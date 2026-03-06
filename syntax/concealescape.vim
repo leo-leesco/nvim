@@ -14,7 +14,7 @@
 " nextgroup and contained work together to ensure that VimHideEscape is followed
 " by VimEscapedChar, and VimEscapedChar is triggered only when called as a
 " nextgroup from another syntax group
-syntax match VimHideEscape /\\\(.*noconceal\)\@!/ conceal containedin=Comment,String nextgroup=VimEscapedChar
+syntax match VimHideEscape /\\\(.*noconceal\)\@!/ conceal containedin=ALL nextgroup=VimEscapedChar
 syntax match VimEscapedChar /./ contained
 
 highlight link VimEscapedChar Keyword | " Special / @markup.link is also another option in order to replicate the exact appearance of Vim |help| pages
