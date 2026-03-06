@@ -12,7 +12,7 @@ digraphs )c 8835
 digraphs (= 8838
 digraphs )= 8839
 
-"∧ ∨ ¬
+"∧ ∨ ¬ ×
 digraphs et 8743
 digraphs or 8744
 digraphs no 172
@@ -42,6 +42,8 @@ digraphs )) 10217
 digraphs [[ 10214
 digraphs ]] 10215
 digraphs \|\| 8741
+digraphs (\| 10629
+digraphs \|) 10630
 
 "≺ ≻ ≼ ≽ <= >=
 digraphs _< 8826
@@ -77,6 +79,7 @@ digraphs bP 8473
 "ℓ ħ
 digraphs ll 8467
 digraphs hh 295
+digraphs nb 8711
 
 "∅ ∞
 digraphs \o 8709 "noconceal
