@@ -17,6 +17,7 @@ digraphs et 8743
 digraphs or 8744
 digraphs no 172
 digraphs xx 215
+digraphs ** 8727
 
 "⊢ ⊣ ⊨ ⫤ ⊥ ⊤
 digraphs \|- 8866
@@ -42,8 +43,8 @@ digraphs )) 10217
 digraphs [[ 10214
 digraphs ]] 10215
 digraphs \|\| 8741
-digraphs (\| 10629
-digraphs \|) 10630
+digraphs (\| 10631
+digraphs \|) 10632
 
 "≺ ≻ ≼ ≽ <= >=
 digraphs _< 8826
