@@ -83,6 +83,7 @@ local root_markers3 = { '.git' }
 
 ---@type vim.lsp.Config
 return {
+	name = server,
 	cmd = { server },
 	filetypes = { 'ocaml', 'menhir', 'ocamlinterface', 'ocamllex', 'reason', 'dune' },
 	root_markers = vim.fn.has('nvim-0.11.3') == 1 and { root_markers1, root_markers2, root_markers3 }

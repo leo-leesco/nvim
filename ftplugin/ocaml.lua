@@ -1,8 +1,7 @@
 vim.lsp.config.ocaml.capabilities = require("blink.cmp").get_lsp_capabilities()
 vim.lsp.start(vim.lsp.config.ocaml)
 
--- `makeprg` options
-vim.cmd.compiler = "ocaml"
+--#region `makeprg` options
 local dune_markers = { "dune-project", "dune" }
 
 local found = vim.fs.find(dune_markers, {
@@ -17,5 +16,6 @@ if #found > 0 then
 else
 	vim.bo.makeprg = "ocamlopt % -o %:r"
 end
+--#endregion
 
 vim.opt_local.suffixesadd:append { ".ml" }
