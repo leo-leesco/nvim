@@ -8,7 +8,7 @@
   "mini.icons": { "branch": "main", "commit": "5b9076dae1bfbe47ba4a14bc8b967cde0ab5d77e" },
   "nightfox.nvim": { "branch": "main", "commit": "ba47d4b4c5ec308718641ba7402c143836f35aa9" },
   "nvim-hs.vim": { "branch": "develop", "commit": "d4a6b7278ae6a1fdc64e300c3ebc1e24719af342" },
-  "nvim-treesitter": { "branch": "main", "commit": "6620ae1c44dfa8623b22d0cbf873a9e8d073b849" },
+  "nvim-treesitter": { "branch": "main", "commit": "f059649bc39ab39d55f2a165db752c956897d4fd" },
   "nvim-treesitter-textobjects": { "branch": "main", "commit": "93d60a475f0b08a8eceb99255863977d3a25f310" },
   "render-markdown.nvim": { "branch": "main", "commit": "e3c18ddd27a853f85a6f513a864cf4f2982b9f26" },
   "trouble.nvim": { "branch": "main", "commit": "bd67efe408d4816e25e8491cc5ad4088e708a69a" },
