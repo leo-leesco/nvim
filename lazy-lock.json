@@ -1,5 +1,5 @@
 {
-  "blink.cmp": { "branch": "main", "commit": "390d84be50cc0ae6d13f395af74bf75c2465400f" },
+  "blink.cmp": { "branch": "main", "commit": "5e088706d92da09949e081cc4d49e2c9ba8cfc8c" },
   "cornelis": { "branch": "parenthesize", "commit": "c36b655754ef4bd4f4ffc29702f67406cb29328c" },
   "friendly-snippets": { "branch": "main", "commit": "6cd7280adead7f586db6fccbd15d2cac7e2188b9" },
   "gx.nvim": { "branch": "main", "commit": "ba9c408fc0130fc4548760c3933a81b58fc50de8" },
