@@ -77,7 +77,7 @@ digraphs bC 8450
 digraphs bK 120130
 digraphs bP 8473
 
-"ℓ ħ
+"ℓ ħ ∇
 digraphs ll 8467
 digraphs hh 295
 digraphs nb 8711
@@ -85,5 +85,8 @@ digraphs nb 8711
 "∅ ∞
 digraphs \o 8709 "noconceal
 digraphs oo 8734
+
+"€
+digraphs eu 8364
 
 " vim: ft=vim.concealescape
