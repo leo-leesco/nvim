@@ -28,6 +28,7 @@
 
 ---@type vim.lsp.Config
 return {
+	name = "pylsp",
 	cmd = { "pylsp" },
 	filetypes = { "python" },
 	root_markers = {
@@ -37,5 +38,22 @@ return {
 		"requirements.txt",
 		"Pipfile",
 		".git",
+	},
+	before_init = function(_, config)
+		local venv = (config.root_dir or "") .. "/.venv"
+		if vim.uv.fs_stat(venv) then
+			config.cmd = { venv .. "/bin/pylsp" }
+			config.settings.pylsp.plugins.yapf.enabled =
+				vim.uv.fs_stat(venv .. "/bin/yapf") ~= nil
+		end
+	end,
+	settings = {
+		pylsp = {
+			plugins = {
+				pycodestyle = { enabled = false },
+				autopep8    = { enabled = false },
+				yapf        = { enabled = false }, -- overridden in before_init if in venv
+			},
+		},
 	},
 }
