@@ -39,7 +39,7 @@ return {
 
 	build = {
 		function()
-			local executable = "tree-sitter-cli"
+			local executable = "tree-sitter"
 			require "ensure_installed" (executable, { "bun install -g", executable })
 		end,
 		function()
