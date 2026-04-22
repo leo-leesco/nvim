@@ -28,7 +28,6 @@
 
 ---@type vim.lsp.Config
 return {
-	name = "pylsp",
 	cmd = { "pylsp" },
 	filetypes = { "python" },
 	root_markers = {
@@ -44,7 +43,7 @@ return {
 		if vim.uv.fs_stat(venv) then
 			config.cmd = { venv .. "/bin/pylsp" }
 			config.settings.pylsp.plugins.yapf.enabled =
-				vim.uv.fs_stat(venv .. "/bin/yapf") ~= nil
+					vim.uv.fs_stat(venv .. "/bin/yapf") ~= nil
 		end
 	end,
 	settings = {
