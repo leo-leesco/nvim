@@ -39,6 +39,7 @@ return {
 		".git",
 	},
 	before_init = function(_, config)
+		config.root_dir = vim.fs.root(0, config.root_markers)
 		local venv = (config.root_dir or "") .. "/.venv"
 		if vim.uv.fs_stat(venv) then
 			config.cmd = { venv .. "/bin/pylsp" }
