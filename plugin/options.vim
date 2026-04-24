@@ -19,4 +19,6 @@ set completeopt=fuzzy,menu,popup,noinsert
 
 set scrolloff=5
 
+set splitbelow
+
 " vim: ft=vim.concealescape
