@@ -21,7 +21,6 @@ local languages = {
 
 	-- markup
 	"markdown",
-	"latex",
 	"typst",
 
 	-- config
