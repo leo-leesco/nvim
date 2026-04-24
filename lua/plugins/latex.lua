@@ -23,6 +23,13 @@ return {
 		vim.g.vimtex_view_method = "texshop"
 		vim.g.vimtex_view_texshop_activate = 0
 
+		vim.api.nvim_create_autocmd({ "BufDelete", "VimLeave" }, {
+			pattern = "*.tex",
+			callback = function()
+				vim.fn.jobstart({ "osascript", "-e", 'quit app "TeXShop"' })
+			end,
+		})
+
 		-- abbreviations
 		vim.g.vimtex_imaps_leader = "@"
 
@@ -33,7 +40,6 @@ return {
 		}
 
 		vim.wo.conceallevel = 2
-
 		vim.g.vimtex_syntax_conceal = {
 			accents = 0,
 			ligatures = 1,
@@ -50,8 +56,11 @@ return {
 			sections = 1,
 			styles = 1,
 		}
-
-
+		vim.api.nvim_create_autocmd("VimEnter", {
+			callback = function()
+				vim.api.nvim_set_hl(0, "Conceal", { link = "Statement", force = true })
+			end,
+		})
 		vim.g.vimtex_syntax_conceal_cites = {
 			type = 'brackets',
 			icon = '📖',
