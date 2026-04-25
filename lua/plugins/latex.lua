@@ -23,10 +23,10 @@ return {
 		vim.g.vimtex_view_method = "texshop"
 		vim.g.vimtex_view_texshop_activate = 0
 
-		vim.api.nvim_create_autocmd({ "BufDelete", "VimLeave" }, {
+		vim.api.nvim_create_autocmd("VimLeavePre", {
 			pattern = "*.tex",
 			callback = function()
-				vim.fn.jobstart({ "osascript", "-e", 'quit app "TeXShop"' })
+				os.execute([[osascript -e 'quit app "TeXShop"']])
 			end,
 		})
 
@@ -49,10 +49,10 @@ return {
 			spacing = 1,
 			greek = 1,
 			math_bounds = 0,
-			math_delimiters = 0,
-			math_fracs = 1,
+			math_delimiters = 1,
+			math_fracs = 0,
 			math_super_sub = 1,
-			math_symbols = 0,
+			math_symbols = 1,
 			sections = 1,
 			styles = 1,
 		}
