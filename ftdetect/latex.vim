@@ -1,1 +1,1 @@
-au FileType tex set filetype=tex.latex
+au BufRead,BufNewFile *.tex set filetype=tex.latex

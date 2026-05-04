@@ -145,6 +145,7 @@ return {
 				ignoredPatterns = {
 					'Underfull',
 					'Overfull',
+					'Unused label',
 				},
 			},
 			build = {
