@@ -48,5 +48,18 @@ return {
 				end)
 			end,
 		})
+
+		vim.api.nvim_create_autocmd("FileType", {
+			group = group,
+			pattern = "lean",
+			callback = function()
+				pcall(function()
+					require("trouble").close()
+					require("trouble.config").setup({
+						modes = { diagnostics = { auto_open = false } },
+					})
+				end)
+			end,
+		})
 	end,
 }
