@@ -13,3 +13,13 @@ vim.lsp.config("*", {
 	capabilities = require("blink.cmp").get_lsp_capabilities(),
 })
 vim.lsp.enable(servers)
+
+-- Nvim 0.11+ ships defaults for grn/gra/grr/gri/grt/gO/K/<C-s>, but not `gd`
+-- (it preserves vim's built-in local-definition search). Bind it per-buffer.
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local opts = { buffer = args.buf }
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+	end,
+})
