@@ -20,6 +20,14 @@ return {
 			diagnostics = {
 				auto_close = true,
 				auto_open = true,
+				-- LaTeX errors are surfaced through vimtex's quickfix list, so
+				-- exclude tex buffers here to avoid a redundant Trouble window.
+				-- The filter runs before the count that gates auto_open/auto_close,
+				-- so Trouble simply never auto-opens *for* tex diagnostics (it still
+				-- opens for other filetypes, even with a .tex buffer also open).
+				filter = {
+					["not"] = { ft = { "tex", "plaintex" } },
+				},
 			}
 		}
 	},
