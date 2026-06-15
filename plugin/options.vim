@@ -16,7 +16,6 @@ set list
 set listchars=tab:→\ ,trail:∙,nbsp:⋅
 
 set completeopt=fuzzy,menu,popup,noselect
-set autocomplete
 
 set wrap
 set linebreak
