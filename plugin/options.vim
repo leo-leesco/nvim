@@ -15,8 +15,12 @@ set smartcase
 set list
 set listchars=tab:→\ ,trail:∙,nbsp:⋅
 
-set completeopt=fuzzy,menu,popup,noinsert
+set completeopt=fuzzy,menu,popup,noselect
+set autocomplete
 
+set wrap
+set linebreak
+set breakindent
 set scrolloff=5
 
 set splitbelow
