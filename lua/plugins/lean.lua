@@ -12,7 +12,7 @@ return {
 	},
 
 	config = function(_, opts)
-		require("lean").setup(opts)
+		vim.g.lean_config = opts
 
 		local group = vim.api.nvim_create_augroup("LeanInfoviewAutoClose", { clear = true })
 
