@@ -3,7 +3,7 @@
   "apathy": { "branch": "master", "commit": "27128a0f55189724c841843ba41cd33cf7186032" },
   "blink.cmp": { "branch": "main", "commit": "78336bc89ee5365633bcf754d93df01678b5c08f" },
   "characterize": { "branch": "master", "commit": "a8bffac6cead6b2869d939ecad06312b187a4c79" },
-  "claudecode.nvim": { "branch": "main", "commit": "288c9bf8834e5d7e401d1485fb5f684b1c2d7c72" },
+  "claudecode.nvim": { "branch": "main", "commit": "2390c6e45c4789072c293ac69de051d169668b29" },
   "cornelis": { "branch": "parenthesize", "commit": "c36b655754ef4bd4f4ffc29702f67406cb29328c" },
   "eunuch": { "branch": "master", "commit": "e86bb794a1c10a2edac130feb0ea590a00d03f1e" },
   "friendly-snippets": { "branch": "main", "commit": "6cd7280adead7f586db6fccbd15d2cac7e2188b9" },
