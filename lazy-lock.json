@@ -28,5 +28,5 @@
   "typst-preview.nvim": { "branch": "master", "commit": "1c2e19486397be1c580b560fc50ee36abe329c46" },
   "vim-easy-align": { "branch": "master", "commit": "9815a55dbcd817784458df7a18acacc6f82b1241" },
   "vim-textobj-user": { "branch": "master", "commit": "41a675ddbeefd6a93664a4dc52f302fe3086a933" },
-  "vimtex": { "branch": "master", "commit": "6368e31fdaf766ff908a2c06e9ee14fc66dec409" }
+  "vimtex": { "branch": "master", "commit": "ad857f8d808c5108c907b9b082d14fe87d0fad94" }
 }
