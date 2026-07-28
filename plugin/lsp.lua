@@ -8,10 +8,17 @@ for _, f in ipairs(vim.fn.readdir(lsp_dir)) do
 	if name then table.insert(servers, name) end
 end
 
--- Wire blink.cmp's extended capabilities into every server.
-vim.lsp.config("*", {
-	capabilities = require("blink.cmp").get_lsp_capabilities(),
-})
+-- Wire blink.cmp's extended capabilities into every server. Guarded so a
+-- broken blink.cmp costs completion capabilities, not the `vim.lsp.enable`
+-- below (i.e. all LSP).
+local ok, blink = pcall(require, "blink.cmp")
+if ok then
+	vim.lsp.config("*", {
+		capabilities = blink.get_lsp_capabilities(),
+	})
+else
+	vim.notify("blink.cmp failed to load — LSP running with default capabilities", vim.log.levels.WARN)
+end
 vim.lsp.enable(servers)
 
 -- Nvim 0.11+ ships defaults for grn/gra/grr/gri/grt/gO/K/<C-s>, but not `gd`
