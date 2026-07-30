@@ -6,9 +6,36 @@
 -- so the client config must stay in `opts.lsp` below — a file in `lsp/` would
 -- be shadowed by setup() and make plugin/lsp.lua start a second, bare client.
 
+-- Jump to a marker of an incomplete proof. A plain text search (skipping
+-- comments and strings) rather than asking the server: in Manual mode the
+-- server only knows the region up to the last interpreted point.
+local admitted = [[\v<(Admitted|Abort|admit|give_up)>]]
+local function jump_admitted(flags)
+	local view = vim.fn.winsaveview()
+	local first
+	while true do
+		local lnum, col = unpack(vim.fn.searchpos(admitted, flags .. "w"))
+		if lnum == 0 or (first and lnum == first[1] and col == first[2]) then
+			break
+		end
+		first = first or { lnum, col }
+		local syn = vim.fn.synIDattr(vim.fn.synID(lnum, col, false), "name"):lower()
+		if not (syn:find("comment") or syn:find("string")) then
+			return
+		end
+	end
+	vim.fn.winrestview(view)
+	vim.notify("no incomplete proof found")
+end
+
 return {
 	"tomtomjhj/vsrocq.nvim",
 	ft = "coq",
+
+	keys = {
+		{ "]a", function() jump_admitted("") end,  ft = "coq", desc = "next incomplete proof" },
+		{ "[a", function() jump_admitted("b") end, ft = "coq", desc = "previous incomplete proof" },
+	},
 
 	dependencies = {
 		{
