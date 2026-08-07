@@ -43,13 +43,25 @@
 --- It is recommended to use the same version of TypeScript in all packages, and therefore have it available in your workspace root. The location of the TypeScript binary will be determined automatically, but only once.
 ---
 
-require "ensure_installed" ("bun", { "brew tap oven-sh/bun", "brew install bun" })
-
 local server = 'typescript-language-server'
-require "ensure_installed" (server, { "bun install", "-g", server, "typescript" })
-
 local formatter = "prettier"
-require "ensure_installed" (formatter, { "bun install", "-g", formatter })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = {
+		"javascript",
+		"javascriptreact",
+		"javascript.jsx",
+		"typescript",
+		"typescriptreact",
+		"typescript.tsx",
+	},
+	once = true,
+	callback = function()
+		require "ensure_installed" ("bun", { "brew tap oven-sh/bun", "brew install bun" })
+		require "ensure_installed" (server, { "bun install", "-g", server, "typescript" })
+		require "ensure_installed" (formatter, { "bun install", "-g", formatter })
+	end,
+})
 
 ---@type vim.lsp.Config
 return {

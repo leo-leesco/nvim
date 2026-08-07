@@ -42,7 +42,13 @@ local function create_tinymist_command(command_name, client, bufnr)
 end
 
 local server = 'tinymist'
-require("ensure_installed")(server, { "brew install", server })
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "typst",
+	once = true,
+	callback = function()
+		require("ensure_installed")(server, { "brew install", server })
+	end,
+})
 
 ---@type vim.lsp.Config
 return {

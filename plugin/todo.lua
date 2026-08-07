@@ -2,7 +2,7 @@ local keywords = { "TODO", "FIXME", "HACK", "NOTE", "WARN" }
 local pattern = "\\c\\v(" .. table.concat(keywords, "|") .. "):"
 
 local function todo_refresh()
-	vim.cmd("silent! lvimgrep /" .. pattern .. "/ %")
+	vim.cmd("silent! lvimgrep /" .. pattern .. "/j %")
 end
 
 vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {

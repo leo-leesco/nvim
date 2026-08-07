@@ -4,6 +4,10 @@ return {
 
 	version = "1.*",
 
+	keys = {
+		{ "<C-u>", "<Nop>", mode = "i", desc = "Disable keymap too close to accept completion" },
+	},
+
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {

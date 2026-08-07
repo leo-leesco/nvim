@@ -59,10 +59,16 @@
 --- })
 --- ```
 
-require "ensure_installed" ("bun", { "brew tap oven-sh/bun", "brew install bun" })
-
 local server = 'yaml-language-server'
-require("ensure_installed")(server, { "bun install", "-g", server })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "yaml", "yaml.docker-compose", "yaml.gitlab", "yaml.helm-values" },
+	once = true,
+	callback = function()
+		require "ensure_installed" ("bun", { "brew tap oven-sh/bun", "brew install bun" })
+		require("ensure_installed")(server, { "bun install", "-g", server })
+	end,
+})
 
 ---@type vim.lsp.Config
 return {
