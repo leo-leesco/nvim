@@ -1,6 +1,3 @@
-vim.lsp.config.ocaml.capabilities = require("blink.cmp").get_lsp_capabilities()
-vim.lsp.start(vim.lsp.config.ocaml)
-
 --#region `makeprg` options
 local dune_markers = { "dune-project", "dune" }
 

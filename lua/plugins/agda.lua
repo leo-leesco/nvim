@@ -13,10 +13,13 @@ return {
 		'kana/vim-textobj-user',
 		{
 			'junegunn/vim-easy-align',
+			keys = {
+				-- agda-only: a global visual <leader> map would shadow every
+				-- <leader>* visual mapping (e.g. <leader>y) with a timeout wait
+				{ "<leader>", "<Plug>(EasyAlign)", mode = "x", ft = "agda", remap = true },
+			},
 			config = function()
 				vim.cmd [[
-				vmap <leader> <Plug>(EasyAlign)
-
 				let g:easy_align_delimiters = {
 					\ '=': { 'pattern': '[≤≡≈∎]', 'left_margin': 2, 'right_margin': 0 },
 					\ }

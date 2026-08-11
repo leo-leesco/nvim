@@ -9,13 +9,18 @@
 
 local util = require("lspconfig.util")
 
-require "ensure_installed" ("bun", { "brew tap oven-sh/bun", "brew install bun" })
-
 local server = "astro-ls"
-require "ensure_installed" (server, { "bun install", "-g", server })
-
 local formatter = "prettier"
-require "ensure_installed" (formatter, { "bun install", "-g", formatter })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "astro",
+	once = true,
+	callback = function()
+		require "ensure_installed" ("bun", { "brew tap oven-sh/bun", "brew install bun" })
+		require "ensure_installed" (server, { "bun install", "-g", server })
+		require "ensure_installed" (formatter, { "bun install", "-g", formatter })
+	end,
+})
 
 ---@type vim.lsp.Config
 return {

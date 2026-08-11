@@ -53,7 +53,13 @@ local function is_library(fname)
 end
 
 local server = 'rust-analyzer'
-require "ensure_installed" (server, { "rustup", "component add", server })
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "rust",
+	once = true,
+	callback = function()
+		require "ensure_installed" (server, { "rustup", "component add", server })
+	end,
+})
 
 ---@type vim.lsp.Config
 return {

@@ -1,3 +1,5 @@
+vim.keymap.set("n", "<leader>p", "<cmd>MarkdownPreview<CR>", { buffer = true, desc = "Markdown Preview" })
+
 vim.cmd.compiler("pandoc") -- WARNING : the standard behaviour of `compiler-pandoc` has been edited : the output format is `pdf` ; passing options to `:make` does not make any difference
 vim.api.nvim_create_autocmd("QuickFixCmdPost", {
 	pattern = "make",

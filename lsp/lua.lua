@@ -69,7 +69,13 @@
 ---
 
 local server = "lua-language-server"
-require "ensure_installed" (server, { "brew install", server })
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "lua",
+	once = true,
+	callback = function()
+		require "ensure_installed" (server, { "brew install", server })
+	end,
+})
 
 local uv = vim.uv
 ---@type vim.lsp.Config

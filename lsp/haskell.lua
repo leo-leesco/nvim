@@ -16,7 +16,13 @@ local util = require 'lspconfig.util'
 
 local server = 'haskell-language-server'
 local executable = server .. '-wrapper'
-require "ensure_installed" (executable, { "ghcup install", server })
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "haskell", "lhaskell", "cabal" },
+	once = true,
+	callback = function()
+		require "ensure_installed" (executable, { "ghcup install", server })
+	end,
+})
 
 ---@type vim.lsp.Config
 return {

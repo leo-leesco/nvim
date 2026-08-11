@@ -9,13 +9,18 @@
 --- opam install ocaml-lsp-server
 --- ```
 
-require "ensure_installed" ("opam", { 'bash -c "sh <(curl -fsSL https://opam.ocaml.org/install.sh)" ' })
-
 local server = 'ocamllsp'
-require "ensure_installed" (server, { "opam install", "ocaml-lsp-server", "-y" })
-
 local formatter = "ocamlformat"
-require "ensure_installed" (formatter, { "opam install", formatter, "-y" })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "ocaml", "menhir", "ocamlinterface", "ocamllex", "reason", "dune" },
+	once = true,
+	callback = function()
+		require "ensure_installed" ("opam", { 'bash -c "sh <(curl -fsSL https://opam.ocaml.org/install.sh)" ' })
+		require "ensure_installed" (server, { "opam install", "ocaml-lsp-server", "-y" })
+		require "ensure_installed" (formatter, { "opam install", formatter, "-y" })
+	end,
+})
 
 -- https://github.com/ocaml/ocaml-lsp/blob/master/ocaml-lsp-server/docs/ocamllsp/switchImplIntf-spec.md
 local function switch_impl_intf(bufnr, client)
