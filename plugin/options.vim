@@ -24,4 +24,6 @@ set scrolloff=5
 
 set splitbelow
 
+set gdefault ":s replaces all occurences on whole lines, use :s//g to turn off
+
 " vim: ft=vim.concealescape
