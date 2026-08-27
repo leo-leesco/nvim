@@ -130,6 +130,19 @@ local function buf_change_env(client, bufnr)
 	end)
 end
 
+local function filter_document_symbols(symbols)
+	local filtered = {}
+	for _, symbol in ipairs(symbols or {}) do
+		symbol.children = filter_document_symbols(symbol.children)
+		if symbol.kind == vim.lsp.protocol.SymbolKind.Module then
+			filtered[#filtered + 1] = symbol
+		else
+			vim.list_extend(filtered, symbol.children)
+		end
+	end
+	return filtered
+end
+
 local server = 'texlab'
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "tex", "plaintex", "bib" },
@@ -144,6 +157,24 @@ return {
 	cmd = { server },
 	filetypes = { 'tex', 'plaintex', 'bib' },
 	root_markers = { '.git', '.latexmkrc', 'latexmkrc', '.texlabroot', 'texlabroot', 'Tectonic.toml' },
+	handlers = {
+		["textDocument/documentSymbol"] = function(err, result, ctx, config)
+			if result and vim.bo[ctx.bufnr].filetype ~= "bib" then
+				result = filter_document_symbols(result)
+				local on_list = config and config.on_list
+				if on_list then
+					config.on_list = function(list)
+						for _, item in ipairs(list.items) do
+							item.col = 0
+							item.text = item.text:gsub("^%[Module%] ", "")
+						end
+						return on_list(list)
+					end
+				end
+			end
+			return vim.lsp.handlers["textDocument/documentSymbol"](err, result, ctx, config)
+		end,
+	},
 	settings = {
 		texlab = {
 			rootDirectory = nil,
