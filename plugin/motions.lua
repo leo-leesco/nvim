@@ -1,3 +1,6 @@
+vim.keymap.set("n", "]]", ":next", { desc = "go to next file" })
+vim.keymap.set("n", "[[", ":prev", { desc = "go to previous file" })
+
 local function smart_paragraph_jump(forward)
 	-- 1. Dynamically extract the left and right sides of the commentstring
 	-- e.g., "-- %s" -> left="--", right=""
