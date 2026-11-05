@@ -16,3 +16,6 @@ nnoremap q/ <Nop>
 " Open backward search history window with CTRL-W? and disable q?
 nnoremap <C-W>? q?
 nnoremap q? <Nop>
+
+" Select what was just pasted (analogous to gv which selects what was just selected)
+nnoremap gV `[v`]
