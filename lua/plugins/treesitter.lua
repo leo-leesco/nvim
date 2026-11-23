@@ -18,6 +18,9 @@ local languages = {
 	"css",
 	"javascript",
 	"typescript",
+	"php",
+	"css",
+	"html",
 
 	-- markup
 	"markdown",
